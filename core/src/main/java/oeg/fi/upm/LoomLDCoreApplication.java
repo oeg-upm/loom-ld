@@ -42,7 +42,7 @@ public class LoomLDCoreApplication {
             + "    }\n"
             + "    FILTER ( ?fullName1 = ?fullName2 )\n"
             + "}";
-
+    System.out.println(queryStr);
     Query query = QueryFactory.create(queryStr);
     ElementGroup queryPattern = (ElementGroup) query.getQueryPattern();
     for (Element element : queryPattern.getElements()) {
