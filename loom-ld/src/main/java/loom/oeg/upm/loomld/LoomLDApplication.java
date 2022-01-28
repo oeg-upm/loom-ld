@@ -3,11 +3,14 @@ package loom.oeg.upm.loomld;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/**
+ * @author Wenqi Jiang
+ */
 @SpringBootApplication
-public class LoomLdApplication {
+public class LoomLDApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(LoomLdApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(LoomLDApplication.class, args);
+    }
 
 }

@@ -1,5 +1,12 @@
 # LOOM-LD
 
+## Structures
+### sparql_based-linking
+It is a java project using maven to manage dependencies.
+
+### loom-ld
+It is a spring boot application for providing loom-ld services.
+
 ## The proposal
 Develop a web service that allows writing and running these SPARQL-based link rules
 
