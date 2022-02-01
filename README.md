@@ -1,16 +1,16 @@
 # LOOM-LD
 
-## Structures
-### sparql_based-linking
+# Structures
+## sparql_based-linking
 It is a java project using maven to manage dependencies.
 
-### loom-ld
+## loom-ld
 It is a spring boot application for providing loom-ld services.
 
-## The proposal
+# The Proposal
 Develop a web service that allows writing and running these SPARQL-based link rules
 
-## Roadmap
+# Roadmap
 1. Review the state of the art for RDF linking or link discovery
 2. Develop a service that accepts SPARQL queries and runs them
    1. For the specification use the [standard](https://www.w3.org/TR/sparql11-overview)
@@ -21,6 +21,7 @@ Develop a web service that allows writing and running these SPARQL-based link ru
 Test the [implementation](core/src/main/resources/test.sparql) with the query
 3. Add linking functions as JenaARQ extensions to the implementation 
    - Import [functions](https://github.com/AndreaCimminoArriaga/EvA4LD/tree/master/tdg.link_discovery.connector.sparql/tdg/link_discovery/connector/sparql/evaluator/arq/linker/string_similarities)
-   
-> Build a set of HTML views to assist users for writing the link rules
-> Compare the time required by our proposal for linking two datasets with Limes or Silk for the same datasets.
+
+# Outcome
+1. Build a set of HTML views to assist users for writing the link rules;
+2. Compare the time required by our proposal for linking two datasets with Limes or Silk for the same datasets.
