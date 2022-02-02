@@ -1,6 +1,5 @@
 package loom.oeg.upm.examples;
 
-import org.apache.commons.math3.stat.descriptive.SummaryStatistics;
 import org.apache.jena.graph.Graph;
 import org.apache.jena.query.*;
 import org.apache.jena.rdf.model.Model;
@@ -16,8 +15,6 @@ import org.apache.jena.sparql.function.FunctionEnv;
 import org.apache.jena.sparql.graph.NodeConst;
 import org.apache.jena.sparql.sse.SSE;
 
-import java.text.DecimalFormat;
-
 /**
  * https://jena.apache.org/documentation/query/library-function.html
  * https://jena.apache.org/documentation/query/writing_functions.html
@@ -25,15 +22,16 @@ import java.text.DecimalFormat;
  *
  * @author Wenqi Jiang
  */
-public class CustomARQFunction {
+public class CustomAggregateFunction {
     /**
      * Custom aggregates use accumulators. One accumulator is created for each group in a query execution.
      */
     public static AccumulatorFactory factory = (agg, distinct) -> new StatsAccumulator(agg);
+    public static int sum = 0;
 
     public static void main(String[] args) {
         // Register the aggregate function
-        AggregateRegistry.register("http://example/stddev", factory, NodeConst.nodeMinusOne);
+        AggregateRegistry.register("http://example/sumdev", factory, NodeConst.nodeMinusOne);
 
         // Add data
         Graph g = SSE.parseGraph(
@@ -50,7 +48,7 @@ public class CustomARQFunction {
 
         Model m = ModelFactory.createModelForGraph(g);
         String sparql = "PREFIX : <http://example/> " +
-                "SELECT (:stddev(?price) AS ?stddev) " +
+                "SELECT (:sumdev(?price) AS ?sum) " +
                 "WHERE { ?item :hasPrice ?price }";
 
         // Execute query and print results
@@ -62,8 +60,7 @@ public class CustomARQFunction {
 
     private static class StatsAccumulator implements Accumulator {
         private final AggCustom AGG_CUSTOM;
-        private final SummaryStatistics SUMMARY_STATISTICS = new SummaryStatistics();
-        private final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("##.####");
+
 
         StatsAccumulator(AggCustom agg) {
             AGG_CUSTOM = agg;
@@ -74,13 +71,14 @@ public class CustomARQFunction {
             // Add values to summaryStatistics
             final ExprList exprList = AGG_CUSTOM.getExprList();
             final NodeValue value = exprList.get(0).eval(binding, functionEnv);
-            SUMMARY_STATISTICS.addValue(value.getDouble());
+            sum += Integer.parseInt(value.toString());
         }
+
 
         @Override
         public NodeValue getValue() {
             // Get the standard deviation
-            return NodeValue.makeNodeDouble(DECIMAL_FORMAT.format(SUMMARY_STATISTICS.getStandardDeviation()));
+            return NodeValue.makeInteger(sum);
         }
     }
 }
