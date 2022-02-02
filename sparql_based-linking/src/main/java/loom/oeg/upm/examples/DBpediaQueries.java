@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ *
  * @author Vinci
  */
 public class DBpediaQueries {
@@ -68,7 +69,6 @@ public class DBpediaQueries {
         QueryExecutionDatasetBuilder.create().context(null);
 
         try (QueryExecution qexec = QueryExecutionFactory.create(query, ModelFactory.createDefaultModel())) {
-
             Map<String, Map<String, List<String>>> serviceParams = new HashMap<>();
             Map<String, List<String>> params = new HashMap<>();
             List<String> values = new ArrayList<>();
@@ -76,8 +76,6 @@ public class DBpediaQueries {
             params.put("timeout", values);
             serviceParams.put(serviceURI, params);
             qexec.getContext().set(ARQ.serviceParams, serviceParams);
-
-
             ResultSet rs = qexec.execSelect();
             ResultSetFormatter.out(System.out, rs, query);
         }

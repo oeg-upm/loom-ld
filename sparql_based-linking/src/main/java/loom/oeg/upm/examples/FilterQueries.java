@@ -56,7 +56,6 @@ public class FilterQueries {
             }
         }
 
-        // TODO jena filter similarity
 
     }
 }
