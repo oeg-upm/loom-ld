@@ -1,4 +1,4 @@
-package loom.oeg.upm.examples;
+package upm.oeg.loom.examples;
 
 import org.apache.jena.query.*;
 import org.apache.jena.rdf.model.ModelFactory;

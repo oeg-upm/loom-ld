@@ -8,7 +8,7 @@
 		<version>2.6.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>loom.oeg.upm</groupId>
+	<groupId>upm.oeg.loom</groupId>
 	<artifactId>loom-ld</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>loom-ld</name>

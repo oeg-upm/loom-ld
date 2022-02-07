@@ -1,4 +1,4 @@
-package loom.oeg.upm.loomld;
+package upm.oeg.loom;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

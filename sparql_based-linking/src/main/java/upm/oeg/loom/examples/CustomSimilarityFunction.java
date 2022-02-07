@@ -1,6 +1,6 @@
-package loom.oeg.upm.examples;
+package upm.oeg.loom.examples;
 
-import loom.oeg.upm.utils.StringUtil;
+import upm.oeg.loom.utils.StringUtil;
 import org.apache.jena.query.Query;
 import org.apache.jena.query.QueryExecution;
 import org.apache.jena.query.QueryExecutionFactory;

@@ -1,4 +1,4 @@
-package loom.oeg.upm.examples;
+package upm.oeg.loom.examples;
 
 import org.apache.jena.query.Query;
 import org.apache.jena.query.QueryExecution;

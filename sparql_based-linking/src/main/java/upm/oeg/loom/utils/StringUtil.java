@@ -1,4 +1,4 @@
-package loom.oeg.upm.utils;
+package upm.oeg.loom.utils;
 
 import info.debatty.java.stringsimilarity.JaroWinkler;
 
