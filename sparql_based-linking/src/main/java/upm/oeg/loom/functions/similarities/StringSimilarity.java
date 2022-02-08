@@ -1,4 +1,4 @@
-package upm.oeg.loom.linker.similarities;
+package upm.oeg.loom.functions.similarities;
 
 import java.util.List;
 
