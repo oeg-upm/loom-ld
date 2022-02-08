@@ -1,4 +1,4 @@
 package upm.oeg.loom.linker.similarities;
 
-public class AbstractARQStringSimilarity {
+public class CosineSimilarity {
 }
