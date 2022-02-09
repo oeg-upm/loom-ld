@@ -1,6 +1,6 @@
 package upm.oeg.loom.examples;
 
-import upm.oeg.loom.utils.StringUtil;
+import info.debatty.java.stringsimilarity.Jaccard;
 import org.apache.jena.query.Query;
 import org.apache.jena.query.QueryExecution;
 import org.apache.jena.query.QueryExecutionFactory;
@@ -66,7 +66,8 @@ public class CustomSimilarityFunction {
     private static class SimilarityPercentage extends FunctionBase2 {
         @Override
         public NodeValue exec(NodeValue v1, NodeValue v2) {
-            return NodeValue.makeDouble(StringUtil.similarity(v1.toString(), v2.toString()));
+            Jaccard jaccard = new Jaccard();
+            return NodeValue.makeDouble(jaccard.similarity(v1.toString(), v2.toString()));
         }
     }
 }
