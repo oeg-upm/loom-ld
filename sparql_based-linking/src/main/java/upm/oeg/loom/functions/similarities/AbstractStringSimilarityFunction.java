@@ -2,6 +2,7 @@ package upm.oeg.loom.functions.similarities;
 
 import org.apache.jena.ext.com.google.common.collect.Lists;
 import org.apache.jena.sparql.expr.NodeValue;
+import org.apache.jena.sparql.function.FunctionBase2;
 import org.apache.jena.sparql.function.FunctionBase3;
 import upm.oeg.loom.enums.SimilarityAlgorithm;
 
@@ -14,7 +15,7 @@ import java.util.NoSuchElementException;
  *
  * @author Wenqi Jiang
  */
-public abstract class AbstractStringSimilarityFunction extends FunctionBase3 implements StringSimilarity {
+public abstract class AbstractStringSimilarityFunction extends FunctionBase2 implements StringSimilarity {
 
     private SimilarityAlgorithm algorithm;
 
@@ -24,13 +25,10 @@ public abstract class AbstractStringSimilarityFunction extends FunctionBase3 imp
 
 
     @Override
-    public NodeValue exec(NodeValue v1, NodeValue v2, NodeValue v3) {
+    public NodeValue exec(NodeValue v1, NodeValue v2) {
         String element1 = v1.getString();
         String element2 = v2.getString();
-        // TODO tokenizing elements
-        Double threshold = v3.getDouble();
-        Double score = compareStrings(element1, element2, threshold);
-        score = normalizing(score, threshold);
+        Double score = compareStrings(element1, element2);
         return NodeValue.makeDouble(score);
     }
 
@@ -54,19 +52,6 @@ public abstract class AbstractStringSimilarityFunction extends FunctionBase3 imp
         return score;
     }
 
-    @Override
-    public Double compareStrings(List<String> strings1, List<String> strings2) {
-        List<List<String>> stringPairs = Lists.cartesianProduct(strings1, strings2);
-        return stringPairs.stream()
-                .map(strings -> compareStrings(strings.get(0), strings.get(1)))
-                .max(Comparator.comparing(Double::doubleValue))
-                .orElseThrow(NoSuchElementException::new);
-    }
-
-    @Override
-    public Double compareStrings(String element1, String element2, Double threshold) {
-        return null;
-    }
 
     public SimilarityAlgorithm getAlgorithm() {
         return algorithm;

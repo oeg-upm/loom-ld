@@ -37,11 +37,6 @@
             <scope>test</scope>
         </dependency>
 
-        <dependency>
-            <groupId>org.apache.opennlp</groupId>
-            <artifactId>opennlp-tools</artifactId>
-            <version>${opennlp.version}</version>
-        </dependency>
 
 
 
