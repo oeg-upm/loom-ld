@@ -6,16 +6,16 @@ import upm.oeg.loom.enums.SimilarityAlgorithm;
 /**
  * @author Wenqi
  */
-public class RatcliffObershelpSimilarity extends AbstractStringSimilarityFunction{
+public class RatcliffObershelpSimilarityFunction extends AbstractSimilarityFunction {
     private final RatcliffObershelp ratcliffObershelp;
 
-    public RatcliffObershelpSimilarity() {
+    public RatcliffObershelpSimilarityFunction() {
         super(SimilarityAlgorithm.RATCLIFF_OBERSHELP);
         ratcliffObershelp = new RatcliffObershelp();
     }
 
     @Override
-    public Double compareStrings(String element1, String element2) {
+    public Double similarity(String element1, String element2) {
         return ratcliffObershelp.similarity(element1,element2);
     }
 }

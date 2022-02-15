@@ -6,16 +6,16 @@ import upm.oeg.loom.enums.SimilarityAlgorithm;
 /**
  * @author Wenqi
  */
-public class JaroWinklerSimilarity extends AbstractStringSimilarityFunction{
+public class JaroWinklerSimilarityFunction extends AbstractSimilarityFunction {
     private final JaroWinkler jaroWinkler;
 
-    public JaroWinklerSimilarity() {
+    public JaroWinklerSimilarityFunction() {
         super(SimilarityAlgorithm.JARO_WINKLER);
         jaroWinkler = new JaroWinkler();
     }
 
     @Override
-    public Double compareStrings(String element1, String element2) {
+    public Double similarity(String element1, String element2) {
         return jaroWinkler.similarity(element1, element2);
     }
 }

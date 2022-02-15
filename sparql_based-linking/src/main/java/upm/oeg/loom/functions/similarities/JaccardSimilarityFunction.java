@@ -6,16 +6,16 @@ import upm.oeg.loom.enums.SimilarityAlgorithm;
 /**
  * @author Wenqi
  */
-public class JaccardSimilarity extends AbstractStringSimilarityFunction {
+public class JaccardSimilarityFunction extends AbstractSimilarityFunction {
     private final Jaccard jaccard;
 
-    public JaccardSimilarity() {
+    public JaccardSimilarityFunction() {
         super(SimilarityAlgorithm.JACCARD);
         jaccard = new Jaccard();
     }
 
     @Override
-    public Double compareStrings(String element1, String element2) {
+    public Double similarity(String element1, String element2) {
         return jaccard.similarity(element1, element2);
     }
 }

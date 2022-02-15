@@ -3,17 +3,16 @@ package upm.oeg.loom.functions.similarities;
 import info.debatty.java.stringsimilarity.Cosine;
 import upm.oeg.loom.enums.SimilarityAlgorithm;
 
-public class CosineSimilarity extends AbstractStringSimilarityFunction{
+public class CosineSimilarityFunction extends AbstractSimilarityFunction {
 
     private final Cosine cosine;
 
-    public CosineSimilarity(){
+    public CosineSimilarityFunction(){
         super(SimilarityAlgorithm.COSINE);
         cosine = new Cosine();
     }
     @Override
-    public Double compareStrings(String element1, String element2) {
-
+    public Double similarity(String element1, String element2) {
         return cosine.similarity(element1, element2);
     }
 }
