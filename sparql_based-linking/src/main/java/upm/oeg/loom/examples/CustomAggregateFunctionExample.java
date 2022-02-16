@@ -22,7 +22,7 @@ import org.apache.jena.sparql.sse.SSE;
  *
  * @author Wenqi Jiang
  */
-public class CustomAggregateFunction {
+public class CustomAggregateFunctionExample {
     /**
      * Custom aggregates use accumulators. One accumulator is created for each group in a query execution.
      */

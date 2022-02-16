@@ -13,7 +13,7 @@ import org.apache.jena.sparql.syntax.ElementGroup;
 /**
  * @author Wenqi
  */
-public class FilterQueries {
+public class FilterQueryExample {
     public static void main(String[] args) {
         String queryStr =
                 "PREFIX :        <http://www.semanticweb.org/chetan/ontologies/2014/5/untitled-ontology-11#>\n"

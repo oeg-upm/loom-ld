@@ -1,29 +1,28 @@
 package upm.oeg.loom.enums;
 
-/**
- * @author Wenqi
- */
-
+/** @author Wenqi */
 public enum SimilarityAlgorithm {
-    /**
-     *
-     */
-    COSINE,
-    /**
-     *
-     */
-    JACCARD,
+  /** */
+  COSINE("cosine"),
+  /** */
+  JACCARD("jaccard"),
 
-    /**
-     *
-     */
-    JARO_WINKLER,
-    /**
-     *
-     */
-    LEVENSHTEIN,
-    /**
-     *
-     */
-    RATCLIFF_OBERSHELP;
+  /** */
+  JARO_WINKLER("jaro-winkler"),
+  /** */
+  LEVENSHTEIN("levenshtein"),
+  /** */
+  RATCLIFF_OBERSHELP("ratcliff-obershelp");
+  private final String name;
+
+  /** @param name Algorithm name */
+  SimilarityAlgorithm(final String name) {
+    this.name = name;
+  }
+
+  /** @see java.lang.Enum#toString() */
+  @Override
+  public String toString() {
+    return name;
+  }
 }

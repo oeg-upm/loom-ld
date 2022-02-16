@@ -17,7 +17,7 @@ import org.apache.jena.sparql.syntax.ElementGroup;
 /**
  * @author Wenqi
  */
-public class CustomSimilarityFunction {
+public class CustomFunctionExample {
     public static void main(String[] args) {
         FunctionRegistry.get().put("http://loom.oeg.upm.es/functions#sm", SimilarityPercentage.class);
     String queryStr =

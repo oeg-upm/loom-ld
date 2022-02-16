@@ -14,7 +14,4 @@ public interface Similarity {
      */
     public Double similarity(String element1, String element2);
 
-
-
-
 }

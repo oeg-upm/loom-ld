@@ -14,10 +14,10 @@ import java.util.Map;
  *
  * @author Vinci
  */
-public class DBpediaQueries {
+public class DBpediaQueryExample {
 
     public static void main(String[] args) {
-        DBpediaQueries queries = new DBpediaQueries();
+        DBpediaQueryExample queries = new DBpediaQueryExample();
         queries.getFromEndPoint();
         queries.getFromService();
         queries.getFromService("http://dbpedia-live.openlinksw.com/sparql");
