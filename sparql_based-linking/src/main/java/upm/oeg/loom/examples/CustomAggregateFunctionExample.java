@@ -23,62 +23,63 @@ import org.apache.jena.sparql.sse.SSE;
  * @author Wenqi Jiang
  */
 public class CustomAggregateFunctionExample {
-    /**
-     * Custom aggregates use accumulators. One accumulator is created for each group in a query execution.
-     */
-    public static AccumulatorFactory factory = (agg, distinct) -> new StatsAccumulator(agg);
-    public static int sum = 0;
+  /**
+   * Custom aggregates use accumulators. One accumulator is created for each group in a query
+   * execution.
+   */
+  public static AccumulatorFactory factory = (agg, distinct) -> new StatsAccumulator(agg);
 
-    public static void main(String[] args) {
-        // Register the aggregate function
-        AggregateRegistry.register("http://example/sumdev", factory, NodeConst.nodeMinusOne);
+  public static int sum = 0;
 
-        // Add data
-        Graph g = SSE.parseGraph(
-                "(graph " +
-                        "(:item1 :hasPrice 123) " +
-                        "(:item2 :hasPrice 234) " +
-                        "(:item3 :hasPrice 456) " +
-                        "(:item4 :hasPrice 567) " +
-                        "(:item5 :hasPrice 678) " +
-                        "(:item6 :hasPrice 345) " +
-                        "(:item7 :hasPrice 789)" +
-                        ")"
-        );
+  public static void main(String[] args) {
+    // Register the aggregate function
+    AggregateRegistry.register("http://example/sumdev", factory, NodeConst.nodeMinusOne);
 
-        Model m = ModelFactory.createModelForGraph(g);
-        String sparql = "PREFIX : <http://example/> " +
-                "SELECT (:sumdev(?price) AS ?sum) " +
-                "WHERE { ?item :hasPrice ?price }";
+    // Add data
+    Graph g =
+        SSE.parseGraph(
+            "(graph "
+                + "(:item1 :hasPrice 123) "
+                + "(:item2 :hasPrice 234) "
+                + "(:item3 :hasPrice 456) "
+                + "(:item4 :hasPrice 567) "
+                + "(:item5 :hasPrice 678) "
+                + "(:item6 :hasPrice 345) "
+                + "(:item7 :hasPrice 789)"
+                + ")");
 
-        // Execute query and print results
-        Query q = QueryFactory.create(sparql);
-        QueryExecution qexec = QueryExecutionFactory.create(q, m);
-        ResultSet rs = qexec.execSelect();
-        ResultSetFormatter.out(rs);
+    Model m = ModelFactory.createModelForGraph(g);
+    String sparql =
+        "PREFIX : <http://example/> "
+            + "SELECT (:sumdev(?price) AS ?sum) "
+            + "WHERE { ?item :hasPrice ?price }";
+
+    // Execute query and print results
+    Query q = QueryFactory.create(sparql);
+    QueryExecution qexec = QueryExecutionFactory.create(q, m);
+    ResultSet rs = qexec.execSelect();
+    ResultSetFormatter.out(rs);
+  }
+
+  private static class StatsAccumulator implements Accumulator {
+    private final AggCustom AGG_CUSTOM;
+
+    StatsAccumulator(AggCustom agg) {
+      AGG_CUSTOM = agg;
     }
 
-    private static class StatsAccumulator implements Accumulator {
-        private final AggCustom AGG_CUSTOM;
-
-
-        StatsAccumulator(AggCustom agg) {
-            AGG_CUSTOM = agg;
-        }
-
-        @Override
-        public void accumulate(Binding binding, FunctionEnv functionEnv) {
-            // Add values to summaryStatistics
-            final ExprList exprList = AGG_CUSTOM.getExprList();
-            final NodeValue value = exprList.get(0).eval(binding, functionEnv);
-            sum += Integer.parseInt(value.toString());
-        }
-
-
-        @Override
-        public NodeValue getValue() {
-            // Get the standard deviation
-            return NodeValue.makeInteger(sum);
-        }
+    @Override
+    public void accumulate(Binding binding, FunctionEnv functionEnv) {
+      // Add values to summaryStatistics
+      final ExprList exprList = AGG_CUSTOM.getExprList();
+      final NodeValue value = exprList.get(0).eval(binding, functionEnv);
+      sum += Integer.parseInt(value.toString());
     }
+
+    @Override
+    public NodeValue getValue() {
+      // Get the standard deviation
+      return NodeValue.makeInteger(sum);
+    }
+  }
 }

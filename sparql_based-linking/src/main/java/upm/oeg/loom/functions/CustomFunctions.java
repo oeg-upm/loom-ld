@@ -11,18 +11,17 @@ import upm.oeg.loom.functions.similarities.*;
  * @author Wenqi
  */
 public class CustomFunctions {
-  public static final FunctionRegistry FUNCTION_REGISTRY = FunctionRegistry.get();
   private static final String LINK = CustomARQConstants.LINK_PREFIX;
 
   public static void loadSimilarityFunctions() {
-    add(LINK + SimilarityAlgorithm.COSINE, CosineSimilarityFunction.class);
-    add(LINK + SimilarityAlgorithm.JACCARD, JaccardSimilarityFunction.class);
-    add(LINK + SimilarityAlgorithm.JARO_WINKLER, JaroWinklerSimilarityFunction.class);
-    add(LINK + SimilarityAlgorithm.LEVENSHTEIN, LevenshteinSimilarityFunction.class);
-    add(LINK + SimilarityAlgorithm.RATCLIFF_OBERSHELP, RatcliffObershelpSimilarityFunction.class);
+    put(LINK + SimilarityAlgorithm.COSINE, CosineSimilarityFunction.class);
+    put(LINK + SimilarityAlgorithm.JACCARD, JaccardSimilarityFunction.class);
+    put(LINK + SimilarityAlgorithm.JARO_WINKLER, JaroWinklerSimilarityFunction.class);
+    put(LINK + SimilarityAlgorithm.LEVENSHTEIN, LevenshteinSimilarityFunction.class);
+    put(LINK + SimilarityAlgorithm.RATCLIFF_OBERSHELP, RatcliffObershelpSimilarityFunction.class);
   }
 
-  private static void add(String uri, Class<?> funcClass) {
-    FUNCTION_REGISTRY.put(uri, funcClass);
+  private static void put(String uri, Class<?> funcClass) {
+    FunctionRegistry.get().put(uri, funcClass);
   }
 }

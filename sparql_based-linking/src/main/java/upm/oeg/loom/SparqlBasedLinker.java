@@ -1,8 +1,4 @@
 package upm.oeg.loom;
 
-/**
- * @author Wenqi Jiang
- */
-public class SparqlBasedLinker {
-
-}
+/** @author Wenqi Jiang */
+public class SparqlBasedLinker {}

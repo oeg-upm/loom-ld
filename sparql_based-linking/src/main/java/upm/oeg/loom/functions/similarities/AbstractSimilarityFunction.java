@@ -19,10 +19,11 @@ public abstract class AbstractSimilarityFunction extends FunctionBase2 implement
 
   @Override
   public NodeValue exec(NodeValue v1, NodeValue v2) {
-    String element1 = v1.getString();
-    String element2 = v2.getString();
+    String element1 = v1.asString();
+    String element2 = v2.asString();
+    System.out.println(element1);
     Double score = similarity(element1, element2);
-    return NodeValue.makeDouble(score);
+    return NodeValue.makeString(score.toString());
   }
 
   public SimilarityAlgorithm getAlgorithm() {
