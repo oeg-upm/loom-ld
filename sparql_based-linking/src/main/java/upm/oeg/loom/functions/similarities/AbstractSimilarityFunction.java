@@ -22,7 +22,7 @@ public abstract class AbstractSimilarityFunction extends FunctionBase2 implement
     String element1 = v1.asString();
     String element2 = v2.asString();
     Double score = similarity(element1, element2);
-    return NodeValue.makeString(score.toString());
+    return NodeValue.makeDouble(score);
   }
 
   public SimilarityAlgorithm getAlgorithm() {
