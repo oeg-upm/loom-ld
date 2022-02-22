@@ -17,7 +17,7 @@ public class CustomFunctionExample {
             + "    SERVICE <http://dbpedia-live.openlinksw.com/sparql?timeout=2000> { "
             + "        SELECT DISTINCT ?company1 where {?company1 a <http://dbpedia.org/ontology/Company>} LIMIT 20"
             + "    }"
-            + "BIND(loom:cosine(?company, ?company1) AS ?grade)"
+            + "BIND(loom:levenshtein(?company, ?company1) AS ?grade)"
             + "}";
 
     Query query = QueryFactory.create(queryString);
