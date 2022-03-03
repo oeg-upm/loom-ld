@@ -10,7 +10,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/** @author Vinci */
+/**
+ * Here are 3 different ways run sparql from remote databases
+ * @author Vinci */
 public class DBpediaQueryExample {
 
   public static void main(String[] args) {

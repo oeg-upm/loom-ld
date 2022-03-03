@@ -7,6 +7,12 @@ import org.apache.jena.sparql.expr.NodeValue;
 import org.apache.jena.sparql.function.FunctionBase2;
 import org.apache.jena.sparql.function.FunctionRegistry;
 
+/**
+ *
+ * This example is for testing how to register a custom function, which has two parameters
+ *
+ * @author Wenqi
+ */
 public class MyFunctionExample {
 
   public static void main(String[] args) {

@@ -10,7 +10,11 @@ import org.apache.jena.sparql.syntax.Element;
 import org.apache.jena.sparql.syntax.ElementFilter;
 import org.apache.jena.sparql.syntax.ElementGroup;
 
-/** @author Wenqi */
+/**
+ * This example is for testing how sparql based linking works
+ *
+ * @author Wenqi
+ */
 public class FilterQueryExample {
   public static void main(String[] args) {
     String queryStr =
