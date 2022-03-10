@@ -36,14 +36,6 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
-        <!-- OAEI MELT Evaluation -->
-        <dependency>
-            <groupId>de.uni-mannheim.informatik.dws.melt</groupId>
-            <artifactId>matching-eval</artifactId>
-            <version>${oaei.melt.version}</version>
-        </dependency>
-
-
 
     </dependencies>
 

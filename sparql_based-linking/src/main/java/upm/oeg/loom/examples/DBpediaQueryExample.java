@@ -38,15 +38,15 @@ public class DBpediaQueryExample {
   }
 
   private void getFromEndPoint() {
-    String queryStr = "SELECT DISTINCT ?Concept where {[] a ?Concept} LIMIT 10";
+    String queryStr = "SELECT DISTINCT ?Concept where {[] a ?Concept} LIMIT 100";
     Query query = QueryFactory.create(queryStr);
 
-    Context cxt = ARQ.getContext().copy();
 
     // Build-execute
     try (QueryExecution qExec =
         QueryExecutionHTTP.create()
-            .endpoint("http://dbpedia.org/sparql")
+//            .endpoint("http://dbpedia.org/sparql")
+            .endpoint("http://datos.bne.es/sparql")
             .query(query)
             .param("timeout", "10000")
             .build()) {

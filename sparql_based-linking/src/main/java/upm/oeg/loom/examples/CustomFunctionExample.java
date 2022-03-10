@@ -13,11 +13,11 @@ import org.apache.jena.sparql.function.FunctionRegistry;
  *
  * @author Wenqi
  */
-public class MyFunctionExample {
+public class CustomFunctionExample {
 
   public static void main(String[] args) {
     FunctionRegistry ref = FunctionRegistry.get();
-    ref.put("http://oeg.upm.es/loom-ld/functions/link#", MyFunction.class);
+    ref.put("http://oeg.upm.es/loom-ld/functions/link#", CustomFunction.class);
     String queryString =
         "PREFIX loom:    <http://oeg.upm.es/loom-ld/functions/link#>"
             + "SELECT * WHERE { "
@@ -38,7 +38,7 @@ public class MyFunctionExample {
     }
   }
 
-  public static class MyFunction extends FunctionBase2 {
+  public static class CustomFunction extends FunctionBase2 {
     Cosine cosine = new Cosine();
 
     @Override
