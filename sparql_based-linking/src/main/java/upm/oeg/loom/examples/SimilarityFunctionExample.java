@@ -40,20 +40,22 @@ public class SimilarityFunctionExample {
           + "PREFIX wd:       <http://www.wikidata.org/entity/>\n"
           + "PREFIX wdt:      <http://www.wikidata.org/prop/direct/>\n"
           + "CONSTRUCT {\n"
-          + "   ?scientist1 owl:sameAs ?name2 .\n"
+          + "   ?scientist1 owl:sameAs ?scientist2 .\n"
+          + "   ?scientist1 foaf:name ?name1 .\n"
+          + "   ?scientist2 foaf:name ?name2 \n"
           + "}\n"
           + "WHERE {\n"
-          + "   SERVICE <http://live.dbpedia.org/sparql?timeout=3000> {\n"
+          + "   SERVICE <http://live.dbpedia.org/sparql?timeout=30000> {\n"
           + "     ?scientist1 rdf:type dbo:Scientist.\n"
           + "     ?scientist1 foaf:name ?name1. \n"
           + "   }\n"
-          + "   SERVICE <https://query.wikidata.org/sparql?timeout=3000> {\n"
+          + "   SERVICE <https://query.wikidata.org/sparql?timeout=30000> {\n"
           + "     ?scientist2 wdt:P106 wd:Q901.\n"
           + "     ?scientist2 wdt:P1559 ?name2.\n"
           + "   }\n"
           + "   FILTER ( loom:levenshtein(?name1, ?name2 ) > 0.85)\n"
           + "}\n"
-          + "Limit 6";
+          + "Limit 8";
 
   public static void main(String[] args) {
     CustomFunctions.loadSimilarityFunctions();
