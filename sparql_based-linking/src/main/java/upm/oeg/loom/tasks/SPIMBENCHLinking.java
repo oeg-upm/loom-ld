@@ -1,4 +1,4 @@
-package upm.oeg.loom.examples;
+package upm.oeg.loom.tasks;
 
 import org.apache.jena.query.Query;
 import org.apache.jena.query.QueryExecution;
@@ -14,17 +14,17 @@ import upm.oeg.loom.functions.CustomFunctions;
  *
  * @author Wenqi
  */
-public class OAEILinkingExample {
+public class SPIMBENCHLinking {
   private static final String TBOX_1_FILENAME = "Tbox1.nt";
   private static final String TBOX_2_FILENAME = "Tbox2.nt";
 
-  public OAEILinkingExample() {
+  public SPIMBENCHLinking() {
     CustomFunctions.loadSimilarityFunctions();
   }
 
   public static void main(String[] args) {
 
-    OAEILinkingExample oaei = new OAEILinkingExample();
+    SPIMBENCHLinking spimbench = new SPIMBENCHLinking();
     String sparql1 =
         "PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n"
             + "PREFIX rdfs:     <http://www.w3.org/2000/01/rdf-schema#>\n"
@@ -45,7 +45,7 @@ public class OAEILinkingExample {
             + "  ?thing cwork:description ?description .\n"
             + "  FILTER(?work IN (cwork:NewsItem, cwork:BlogPost, cwork:Programme))\n"
             + "}\n";
-    Model tBox1 = oaei.run(sparql1, TBOX_1_FILENAME);
+    Model tBox1 = spimbench.run(sparql1, TBOX_1_FILENAME);
     String sparql2 =
         "PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n"
             + "PREFIX rdfs:     <http://www.w3.org/2000/01/rdf-schema#>\n"
@@ -67,7 +67,7 @@ public class OAEILinkingExample {
             + "  FILTER(?work IN (cwork:NewsItem, cwork:BlogPost, cwork:Programme))\n"
             + "}\n";
 
-    Model tBox2 = oaei.run(sparql2, TBOX_2_FILENAME);
+    Model tBox2 = spimbench.run(sparql2, TBOX_2_FILENAME);
     Model tBox = tBox1.add(tBox2);
     String sparql =
         "PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n"
@@ -89,7 +89,7 @@ public class OAEILinkingExample {
             + "  BIND(loom:jaro-winkler(?title1, ?title2 ) AS ?grade)"
             + "  FILTER ( ?grade > 0.8 && ?thing1 != ?thing2)\n"
             + "}\n";
-    Model pairs = oaei.run(sparql, tBox);
+    Model pairs = spimbench.run(sparql, tBox);
     pairs.write(System.out, "TURTLE");
   }
 

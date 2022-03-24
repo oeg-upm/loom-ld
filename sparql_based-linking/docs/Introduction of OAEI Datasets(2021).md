@@ -16,6 +16,7 @@ The **SPIMBENCH** task is composed of two datasets with different scales (i.e., 
 The SPIMBENCH datasets are generated and transformed using SPIMBENCH by altering a set of original data through value-based, structure-based, and semantics-aware transformations (simple combination of transformations).
 
 hobbit:implementsAPI bench:spimbenchAPI
+
 ---
 
 The aim of the instance matching benchmark for spatial data challenge is to test the performance of IM tools that implement topological approaches for identifying matching spatial entities. The IM frameworks will be evaluated for both accuracy (precision, recall and f-measure) and time performance.

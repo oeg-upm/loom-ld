@@ -8,7 +8,6 @@ import org.apache.jena.sparql.function.FunctionBase2;
 import org.apache.jena.sparql.function.FunctionRegistry;
 
 /**
- *
  * This example is for testing how to register a custom function, which has two parameters
  *
  * @author Wenqi
@@ -17,9 +16,9 @@ public class CustomFunctionExample {
 
   public static void main(String[] args) {
     FunctionRegistry ref = FunctionRegistry.get();
-    ref.put("http://oeg.upm.es/loom-ld/functions/link#", CustomFunction.class);
+    ref.put("http://oeg.upm.es/loom-ld/functions/linking#", CustomFunction.class);
     String queryString =
-        "PREFIX loom:    <http://oeg.upm.es/loom-ld/functions/link#>"
+        "PREFIX linking:    <http://oeg.upm.es/loom-ld/functions/linking#>"
             + "SELECT * WHERE { "
             + "    SERVICE <http://dbpedia-live.openlinksw.com/sparql?timeout=2000> { "
             + "        SELECT DISTINCT ?company where {?company a <http://dbpedia.org/ontology/Company>} LIMIT 20"
@@ -27,7 +26,7 @@ public class CustomFunctionExample {
             + "    SERVICE <http://dbpedia-live.openlinksw.com/sparql?timeout=2000> { "
             + "        SELECT DISTINCT ?company1 where {?company1 a <http://dbpedia.org/ontology/Company>} LIMIT 20"
             + "    }"
-            + "BIND(loom:(?company, ?company1) AS ?grade)"
+            + "BIND(linking:(?company, ?company1) AS ?grade)"
             + "}";
 
     Query query = QueryFactory.create(queryString);
