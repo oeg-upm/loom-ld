@@ -1,0 +1,59 @@
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:seals="http://www.seals-project.eu/ontologies/SEALSMetadata.owl#"
+    xmlns:dc="http://purl.org/dc/terms/" > 
+    
+
+	<!-- MATCHING PROBLEMS -->
+	
+
+	<rdf:Description rdf:about="http://www.seals-project.eu/alignment/SimpleCombinationSmallSuite">
+		<rdf:type rdf:resource="http://www.seals-project.eu/ontologies/SEALSMetadata.owl#Suite"/>
+		<seals:hasSuiteItem rdf:resource="http://www.seals-project.eu/alignment/SimpleCombinationSmallSuite#small-source-target"/>		
+	</rdf:Description>
+
+	
+
+	<rdf:Description rdf:about="http://www.seals-project.eu/alignment/SimpleCombinationSmallSuite#small-source-target">
+		<rdf:type rdf:resource="http://www.seals-project.eu/ontologies/SEALSMetadata.owl#SuiteItem"/>
+		<seals:hasDataItem rdf:resource="http://www.seals-project.eu/alignment/SimpleCombinationSmallSuite#source-a"/>
+		<seals:hasDataItem rdf:resource="http://www.seals-project.eu/alignment/SimpleCombinationSmallSuite#target-a"/>
+		<seals:hasDataItem rdf:resource="http://www.seals-project.eu/alignment/SimpleCombinationSmallSuite#source-target-umls-reference"/>
+		<dc:identifier>small-source-target</dc:identifier>
+	</rdf:Description>
+
+
+
+	<!-- ONTOLOGIES -->
+
+	<!-- source Small overlapping with target -->
+	<rdf:Description rdf:about="http://www.seals-project.eu/alignment/SimpleCombinationSmallSuite#source-a">
+		<rdf:type rdf:resource="http://www.seals-project.eu/ontologies/SEALSMetadata.owl#DataItem"/>
+		<seals:hasComponentType>source</seals:hasComponentType>
+		<seals:isLocatedAt>Tbox1.nt</seals:isLocatedAt>
+		<dc:identifier>source-a</dc:identifier>
+	</rdf:Description>
+
+	
+
+	<!-- target Small overlapping with source -->
+	<rdf:Description rdf:about="http://www.seals-project.eu/alignment/SimpleCombinationSmallSuite#target-a">
+		<rdf:type rdf:resource="http://www.seals-project.eu/ontologies/SEALSMetadata.owl#DataItem"/>
+		<seals:hasComponentType>target</seals:hasComponentType>
+		<seals:isLocatedAt>Tbox2.nt</seals:isLocatedAt>
+		<dc:identifier>target-a</dc:identifier>
+	</rdf:Description>
+	
+	
+	
+
+	<!-- Main reference: Original UMLS mappings -->	
+	<rdf:Description rdf:about="http://www.seals-project.eu/alignment/SimpleCombinationSmallSuite#source-target-umls-reference">
+		<rdf:type rdf:resource="http://www.seals-project.eu/ontologies/SEALSMetadata.owl#DataItem"/>
+		<seals:hasComponentType>reference</seals:hasComponentType>
+		<seals:isLocatedAt>refalign.rdf</seals:isLocatedAt>
+		<dc:identifier>source-target-umls-reference</dc:identifier>
+	</rdf:Description>
+
+
+</rdf:RDF>

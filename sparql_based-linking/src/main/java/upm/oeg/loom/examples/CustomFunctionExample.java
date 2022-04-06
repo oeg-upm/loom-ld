@@ -1,11 +1,10 @@
 package upm.oeg.loom.examples;
 
 import info.debatty.java.stringsimilarity.Cosine;
-import org.apache.jena.query.*;
-import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.sparql.expr.NodeValue;
 import org.apache.jena.sparql.function.FunctionBase2;
 import org.apache.jena.sparql.function.FunctionRegistry;
+import upm.oeg.loom.utils.SparqlExecutor;
 
 /**
  * This example is for testing how to register a custom function, which has two parameters
@@ -29,12 +28,7 @@ public class CustomFunctionExample {
             + "BIND(linking:(?company, ?company1) AS ?grade)"
             + "}";
 
-    Query query = QueryFactory.create(queryString);
-    try (QueryExecution qexec =
-        QueryExecutionFactory.create(query, ModelFactory.createDefaultModel())) {
-      ResultSet rs = qexec.execSelect();
-      ResultSetFormatter.out(System.out, rs, query);
-    }
+    SparqlExecutor.printResultSet(queryString);
   }
 
   public static class CustomFunction extends FunctionBase2 {

@@ -1,12 +1,10 @@
 package upm.oeg.loom.tasks;
 
-import org.apache.jena.query.Query;
-import org.apache.jena.query.QueryExecution;
-import org.apache.jena.query.QueryExecutionFactory;
-import org.apache.jena.query.QueryFactory;
 import org.apache.jena.rdf.model.Model;
-import org.apache.jena.riot.RDFDataMgr;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import upm.oeg.loom.functions.CustomFunctions;
+import upm.oeg.loom.utils.SparqlExecutor;
 
 /**
  * https://hobbit-project.github.io/OAEI_2021.html RDF API:
@@ -15,16 +13,13 @@ import upm.oeg.loom.functions.CustomFunctions;
  * @author Wenqi
  */
 public class SPIMBENCHLinking {
-  private static final String TBOX_1_FILENAME = "Tbox1.nt";
-  private static final String TBOX_2_FILENAME = "Tbox2.nt";
-
-  public SPIMBENCHLinking() {
-    CustomFunctions.loadSimilarityFunctions();
-  }
+  private static final String TBOX_1_FILENAME = "SPIMBENCH_large/Tbox1.nt";
+  private static final String TBOX_2_FILENAME = "SPIMBENCH_large/Tbox2.nt";
+  private static final Logger LOGGER = LoggerFactory.getLogger(SPIMBENCHLinking.class);
 
   public static void main(String[] args) {
+    CustomFunctions.loadSimilarityFunctions();
 
-    SPIMBENCHLinking spimbench = new SPIMBENCHLinking();
     String sparql1 =
         "PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n"
             + "PREFIX rdfs:     <http://www.w3.org/2000/01/rdf-schema#>\n"
@@ -45,7 +40,7 @@ public class SPIMBENCHLinking {
             + "  ?thing cwork:description ?description .\n"
             + "  FILTER(?work IN (cwork:NewsItem, cwork:BlogPost, cwork:Programme))\n"
             + "}\n";
-    Model tBox1 = spimbench.run(sparql1, TBOX_1_FILENAME);
+    Model tBox1 = SparqlExecutor.getModel(sparql1, TBOX_1_FILENAME);
     String sparql2 =
         "PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n"
             + "PREFIX rdfs:     <http://www.w3.org/2000/01/rdf-schema#>\n"
@@ -67,7 +62,7 @@ public class SPIMBENCHLinking {
             + "  FILTER(?work IN (cwork:NewsItem, cwork:BlogPost, cwork:Programme))\n"
             + "}\n";
 
-    Model tBox2 = spimbench.run(sparql2, TBOX_2_FILENAME);
+    Model tBox2 = SparqlExecutor.getModel(sparql2, TBOX_2_FILENAME);
     Model tBox = tBox1.add(tBox2);
     String sparql =
         "PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n"
@@ -78,8 +73,8 @@ public class SPIMBENCHLinking {
             + "PREFIX seals:    <http://www.seals-project.eu/ontologies/SEALSMetadata.owl#>\n"
             + "CONSTRUCT {\n"
             + "  ?thing1 owl:sameAs ?thing2 .\n"
-            + "  ?thing1 cwork:title ?title1 .\n"
-            + "  ?thing2 cwork:title ?title2 \n"
+            //            + "  ?thing1 cwork:title ?title1 .\n"
+            //            + "  ?thing2 cwork:title ?title2 \n"
             + "}\n"
             + "WHERE {\n"
             + "  ?thing1 seals:isLocatedAt \"tbox1.nt\" .\n"
@@ -89,21 +84,7 @@ public class SPIMBENCHLinking {
             + "  BIND(loom:jaro-winkler(?title1, ?title2 ) AS ?grade)"
             + "  FILTER ( ?grade > 0.8 && ?thing1 != ?thing2)\n"
             + "}\n";
-    Model pairs = spimbench.run(sparql, tBox);
-    pairs.write(System.out, "TURTLE");
-  }
-
-  private Model run(String sparql, Model model) {
-    System.out.println(sparql);
-    Query query = QueryFactory.create(sparql);
-    QueryExecution qexec = QueryExecutionFactory.create(query, model);
-    return qexec.execConstruct();
-  }
-
-  private Model run(String sparql, String filename) {
-    System.out.println(sparql);
-    Query query = QueryFactory.create(sparql);
-    QueryExecution qexec = QueryExecutionFactory.create(query, RDFDataMgr.loadModel(filename));
-    return qexec.execConstruct();
+    Model pairs = SparqlExecutor.getModel(sparql, tBox);
+    pairs.write(System.out, "NT");
   }
 }

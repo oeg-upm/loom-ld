@@ -1,7 +1,7 @@
 package upm.oeg.loom.examples;
 
 import upm.oeg.loom.functions.CustomFunctions;
-import upm.oeg.loom.utils.SPARQLExecutor;
+import upm.oeg.loom.utils.SparqlExecutor;
 
 /**
  * This example is for test loom-ld similarity functions
@@ -60,6 +60,6 @@ public class SimilarityFunctionExample {
   public static void main(String[] args) {
     CustomFunctions.loadSimilarityFunctions();
 
-    SPARQLExecutor.printConstructResult(SPARQL2);
+    SparqlExecutor.printModel(SPARQL2);
   }
 }

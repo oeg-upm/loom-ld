@@ -1,7 +1,6 @@
 package upm.oeg.loom.examples;
 
 import org.apache.jena.graph.Graph;
-import org.apache.jena.query.*;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.sparql.engine.binding.Binding;
@@ -14,6 +13,7 @@ import org.apache.jena.sparql.expr.aggregate.AggregateRegistry;
 import org.apache.jena.sparql.function.FunctionEnv;
 import org.apache.jena.sparql.graph.NodeConst;
 import org.apache.jena.sparql.sse.SSE;
+import upm.oeg.loom.utils.SparqlExecutor;
 
 /**
  * https://jena.apache.org/documentation/query/library-function.html
@@ -50,15 +50,11 @@ public class CustomAggregateFunctionExample {
 
     Model m = ModelFactory.createModelForGraph(g);
     String sparql =
-        "PREFIX : <http://example/> "
-            + "SELECT (:sumdev(?price) AS ?sum) "
+        "PREFIX : <http://example/> \n"
+            + "SELECT (:sumdev(?price) AS ?sum) \n"
             + "WHERE { ?item :hasPrice ?price }";
 
-    // Execute query and print results
-    Query q = QueryFactory.create(sparql);
-    QueryExecution qexec = QueryExecutionFactory.create(q, m);
-    ResultSet rs = qexec.execSelect();
-    ResultSetFormatter.out(rs);
+    SparqlExecutor.printResultSet(sparql, m);
   }
 
   private static class StatsAccumulator implements Accumulator {
