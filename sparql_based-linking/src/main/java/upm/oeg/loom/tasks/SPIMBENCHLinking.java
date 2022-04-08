@@ -17,7 +17,7 @@ public class SPIMBENCHLinking {
   private static final String TBOX_2_FILENAME = "SPIMBENCH_large/Tbox2.nt";
   private static final Logger LOGGER = LoggerFactory.getLogger(SPIMBENCHLinking.class);
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws Exception {
     CustomFunctions.loadSimilarityFunctions();
 
     String sparql1 =
@@ -84,7 +84,11 @@ public class SPIMBENCHLinking {
             + "  BIND(loom:jaro-winkler(?title1, ?title2 ) AS ?grade)"
             + "  FILTER ( ?grade > 0.8 && ?thing1 != ?thing2)\n"
             + "}\n";
-    Model pairs = SparqlExecutor.getModel(sparql, tBox);
-    pairs.write(System.out, "NT");
+    SparqlExecutor.saveModel(sparql, tBox, "tasks/SPIMBENCH/results.nt");
   }
+
+
+
+
+
 }
