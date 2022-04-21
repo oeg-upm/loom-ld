@@ -26,6 +26,7 @@ public enum GeometryRelation {
   /** a touches b: they have at least one point in common, but their interiors do not intersect. */
   TOUCHES("touches"),
   /** a is within b: a lies in the interior of b. */
+  CROSSES("crosses"),
   WITHIN("within");
 
   private final String relation;
