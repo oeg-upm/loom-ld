@@ -1,20 +1,20 @@
-<http://www.tomtom.com/trace-data/14574.ttl#trace>	<http://www.hobbit.ef7a9d688-d2e1-4717-8d5e-ae5b3af6956e>	1.0
-<http://www.tomtom.com/trace-data/9280.ttl#trace>	<http://www.hobbit.ef546d383-0803-47f2-92c1-95eee385ee17>	1.0
-<http://www.tomtom.com/trace-data/15039.ttl#trace>	<http://www.hobbit.e3cf95786-19d3-4a08-b830-8adc00180080>	1.0
-<http://www.tomtom.com/trace-data/43980.ttl#trace>	<http://www.hobbit.e4da1acba-4ac0-411e-b2c4-95d6ed200f28>	1.0
-<http://www.tomtom.com/trace-data/67152.ttl#trace>	<http://www.hobbit.eb05cb681-f4c9-4673-bac8-b09958ec4eef>	1.0
-<http://www.tomtom.com/trace-data/13993.ttl#trace>	<http://www.hobbit.e077de173-1dfc-4ee0-ad05-cfa5eb465cbf>	1.0
-<http://www.tomtom.com/trace-data/5348.ttl#trace>	<http://www.hobbit.e12ffe391-a53e-41a8-a2ae-bb9135920cae>	1.0
-<http://www.tomtom.com/trace-data/23814.ttl#trace>	<http://www.hobbit.e52e59e3c-5159-4fcf-a4b2-28912fcb4c61>	1.0
-<http://www.tomtom.com/trace-data/23258.ttl#trace>	<http://www.hobbit.e77b51861-ef47-4baf-af09-f866de97644b>	1.0
-<http://www.tomtom.com/trace-data/49739.ttl#trace>	<http://www.hobbit.ea49c5854-bed9-43da-920c-791890f30869>	1.0
-<http://www.tomtom.com/trace-data/36325.ttl#trace>	<http://www.hobbit.e863e48a0-b5c4-47a1-a038-08c92fba9ada>	1.0
-<http://www.tomtom.com/trace-data/47875.ttl#trace>	<http://www.hobbit.e43e606c5-8d38-48e0-9d04-ac6a4e595845>	1.0
-<http://www.tomtom.com/trace-data/844.ttl#trace>	<http://www.hobbit.e2ef41125-6d65-44bb-a95a-c1c3cb6d56c3>	1.0
-<http://www.tomtom.com/trace-data/79282.ttl#trace>	<http://www.hobbit.e913c6047-6f05-4fff-8790-ab4b41d078c7>	1.0
-<http://www.tomtom.com/trace-data/96871.ttl#trace>	<http://www.hobbit.e70aa2c9c-fddd-4e86-923c-9344726afe38>	1.0
-<http://www.tomtom.com/trace-data/40075.ttl#trace>	<http://www.hobbit.e554ffd16-eb8d-45e2-b51b-829b58b9afc7>	1.0
-<http://www.tomtom.com/trace-data/60350.ttl#trace>	<http://www.hobbit.e46c4556d-53a3-4875-85ea-67fc72d073b8>	1.0
-<http://www.tomtom.com/trace-data/82365.ttl#trace>	<http://www.hobbit.e28214915-0572-4baf-83c5-7897173a095b>	1.0
-<http://www.tomtom.com/trace-data/75848.ttl#trace>	<http://www.hobbit.e1ec0ae29-a6bc-41a6-be10-3a78e4afa522>	1.0
-<http://www.tomtom.com/trace-data/75413.ttl#trace>	<http://www.hobbit.ecac320e3-78d2-4faa-ba31-38ec72ed0887>	1.0
+<http://www.tomtom.com/trace-data/14574.ttl#trace>	<http://www.hobbit.ef7a9d688-d2e1-4717-8d5e-ae5b3af6956e>  "1.0"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://www.tomtom.com/trace-data/9280.ttl#trace>	<http://www.hobbit.ef546d383-0803-47f2-92c1-95eee385ee17>  "1.0"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://www.tomtom.com/trace-data/15039.ttl#trace>	<http://www.hobbit.e3cf95786-19d3-4a08-b830-8adc00180080>  "1.0"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://www.tomtom.com/trace-data/43980.ttl#trace>	<http://www.hobbit.e4da1acba-4ac0-411e-b2c4-95d6ed200f28>  "1.0"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://www.tomtom.com/trace-data/67152.ttl#trace>	<http://www.hobbit.eb05cb681-f4c9-4673-bac8-b09958ec4eef>  "1.0"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://www.tomtom.com/trace-data/13993.ttl#trace>	<http://www.hobbit.e077de173-1dfc-4ee0-ad05-cfa5eb465cbf>  "1.0"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://www.tomtom.com/trace-data/5348.ttl#trace>	<http://www.hobbit.e12ffe391-a53e-41a8-a2ae-bb9135920cae>  "1.0"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://www.tomtom.com/trace-data/23814.ttl#trace>	<http://www.hobbit.e52e59e3c-5159-4fcf-a4b2-28912fcb4c61>  "1.0"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://www.tomtom.com/trace-data/23258.ttl#trace>	<http://www.hobbit.e77b51861-ef47-4baf-af09-f866de97644b>  "1.0"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://www.tomtom.com/trace-data/49739.ttl#trace>	<http://www.hobbit.ea49c5854-bed9-43da-920c-791890f30869>  "1.0"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://www.tomtom.com/trace-data/36325.ttl#trace>	<http://www.hobbit.e863e48a0-b5c4-47a1-a038-08c92fba9ada>  "1.0"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://www.tomtom.com/trace-data/47875.ttl#trace>	<http://www.hobbit.e43e606c5-8d38-48e0-9d04-ac6a4e595845>  "1.0"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://www.tomtom.com/trace-data/844.ttl#trace>	<http://www.hobbit.e2ef41125-6d65-44bb-a95a-c1c3cb6d56c3>  "1.0"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://www.tomtom.com/trace-data/79282.ttl#trace>	<http://www.hobbit.e913c6047-6f05-4fff-8790-ab4b41d078c7>  "1.0"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://www.tomtom.com/trace-data/96871.ttl#trace>	<http://www.hobbit.e70aa2c9c-fddd-4e86-923c-9344726afe38>  "1.0"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://www.tomtom.com/trace-data/40075.ttl#trace>	<http://www.hobbit.e554ffd16-eb8d-45e2-b51b-829b58b9afc7>  "1.0"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://www.tomtom.com/trace-data/60350.ttl#trace>	<http://www.hobbit.e46c4556d-53a3-4875-85ea-67fc72d073b8>  "1.0"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://www.tomtom.com/trace-data/82365.ttl#trace>	<http://www.hobbit.e28214915-0572-4baf-83c5-7897173a095b>  "1.0"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://www.tomtom.com/trace-data/75848.ttl#trace>	<http://www.hobbit.e1ec0ae29-a6bc-41a6-be10-3a78e4afa522>  "1.0"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://www.tomtom.com/trace-data/75413.ttl#trace>	<http://www.hobbit.ecac320e3-78d2-4faa-ba31-38ec72ed0887>  "1.0"^^<http://www.w3.org/2001/XMLSchema#decimal> .

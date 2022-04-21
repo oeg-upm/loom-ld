@@ -13,8 +13,10 @@ import upm.oeg.loom.utils.SparqlExecutor;
  * @author Wenqi
  */
 public class SPIMBENCHLinking {
-  private static final String TBOX_1_FILENAME = "SPIMBENCH_large/Tbox1.nt";
-  private static final String TBOX_2_FILENAME = "SPIMBENCH_large/Tbox2.nt";
+  private static final String TBOX_1_FILENAME = "SPIMBENCH/SPIMBENCH_small/Tbox1.nt";
+  private static final String TBOX_2_FILENAME = "SPIMBENCH/SPIMBENCH_small/Tbox2.nt";
+
+  private static final String REFALIGN_FILENAME = "SPIMBENCH/SPIMBENCH_small/refalign.rdf";
   private static final Logger LOGGER = LoggerFactory.getLogger(SPIMBENCHLinking.class);
 
   public static void main(String[] args) throws Exception {
@@ -82,13 +84,33 @@ public class SPIMBENCHLinking {
             + "  ?thing1 seals:isLocatedAt \"tbox2.nt\" .\n"
             + "  ?thing2 cwork:title ?title2 .\n"
             + "  BIND(loom:jaro-winkler(?title1, ?title2 ) AS ?grade)"
-            + "  FILTER ( ?grade > 0.8 && ?thing1 != ?thing2)\n"
+            + "  FILTER ( ?grade > 0.75 && ?thing1 != ?thing2)\n"
             + "}\n";
-    SparqlExecutor.saveModel(sparql, tBox, "tasks/SPIMBENCH/results.nt");
+    //    SparqlExecutor.saveModel(sparql, tBox, "tasks/SPIMBENCH/results.nt");
+    Model result = SparqlExecutor.getModel(sparql, tBox);
+    //    Model result = RDFDataMgr.loadModel("tasks/SPIMBENCH/results.nt");
+    String goldenSparql =
+        "PREFIX heterogeneity: <http://knowledgeweb.semanticweb.org/heterogeneity/>\n"
+            + "PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n"
+            + "PREFIX rdfs:     <http://www.w3.org/2000/01/rdf-schema#>\n"
+            + "PREFIX owl:      <http://www.w3.org/2002/07/owl#>\n"
+            + "CONSTRUCT {\n"
+            + " ?entity1 owl:sameAs ?entity2 .\n"
+            + "}\n"
+            + "WHERE {\n"
+            + " ?alignment heterogeneity:alignmententity1 ?entity1.\n"
+            + " ?alignment heterogeneity:alignmententity2 ?entity2.\n"
+            + " FILTER ( ?entity1 != ?entity2)\n"
+            + "}\n";
+
+    Model golden = SparqlExecutor.getModel(goldenSparql, REFALIGN_FILENAME);
+
+    System.out.println(result.size());
+    System.out.println(golden.size());
+    golden.difference(result).write(System.out, "NT");
+    System.out.println("================");
+    golden.intersection(result).write(System.out, "NT");
+    System.out.println("================");
+    result.difference(golden).write(System.out, "NT");
   }
-
-
-
-
-
 }

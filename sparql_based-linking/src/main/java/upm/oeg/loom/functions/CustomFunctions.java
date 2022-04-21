@@ -33,6 +33,7 @@ public class CustomFunctions {
     put(GEOMETRY_PREFIX + GeometryRelation.INTERSECTS, GeometryIntersectsFunction.class);
     put(GEOMETRY_PREFIX + GeometryRelation.OVERLAPS, GeometryOverlapsFunction.class);
     put(GEOMETRY_PREFIX + GeometryRelation.TOUCHES, GeometryTouchesFunction.class);
+    put(GEOMETRY_PREFIX + GeometryRelation.CROSSES, GeometryCrossesFunction.class);
     put(GEOMETRY_PREFIX + GeometryRelation.WITHIN, GeometryWithinFunction.class);
   }
 

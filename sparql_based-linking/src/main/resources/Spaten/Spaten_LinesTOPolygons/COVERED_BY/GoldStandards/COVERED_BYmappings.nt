@@ -1,24 +1,24 @@
-<http://www.spaten.com/trace-data#490030>	<http://www.hobbit.ed6a9e440-967c-4156-984d-90ce18bb6583>	1.0
-<http://www.spaten.com/trace-data#490030>	<http://www.hobbit.ef2cee069-9e4c-4d1a-bdfe-ca318db3908e>	1.0
-<http://www.spaten.com/trace-data#472323>	<http://www.hobbit.e4670126c-3db6-48d7-a4eb-8008578a71ca>	1.0
-<http://www.spaten.com/trace-data#837718>	<http://www.hobbit.edf6fbe1d-f1d8-4c25-943e-17829f3d34a0>	1.0
-<http://www.spaten.com/trace-data#56212>	<http://www.hobbit.e66bfe125-dbc6-435c-b064-dc18ada961f8>	1.0
-<http://www.spaten.com/trace-data#56212>	<http://www.hobbit.e3a7557ad-eaaf-4dbf-b81e-42d24b836b50>	1.0
-<http://www.spaten.com/trace-data#740123>	<http://www.hobbit.e66bfe125-dbc6-435c-b064-dc18ada961f8>	1.0
-<http://www.spaten.com/trace-data#740123>	<http://www.hobbit.e3a7557ad-eaaf-4dbf-b81e-42d24b836b50>	1.0
-<http://www.spaten.com/trace-data#44152>	<http://www.hobbit.e08a5294d-3df8-4405-bca5-cdbbe7584d9f>	1.0
-<http://www.spaten.com/trace-data#852717>	<http://www.hobbit.ee2babc98-547c-48b4-aa8e-d45dd170a2e9>	1.0
-<http://www.spaten.com/trace-data#872226>	<http://www.hobbit.ed7301e53-418c-4f57-8e39-1cb8351a5aeb>	1.0
-<http://www.spaten.com/trace-data#162531>	<http://www.hobbit.ed6a9e440-967c-4156-984d-90ce18bb6583>	1.0
-<http://www.spaten.com/trace-data#162531>	<http://www.hobbit.ef2cee069-9e4c-4d1a-bdfe-ca318db3908e>	1.0
-<http://www.spaten.com/trace-data#66404>	<http://www.hobbit.e6528e3fd-4905-4734-84fd-e104ad697303>	1.0
-<http://www.spaten.com/trace-data#207815>	<http://www.hobbit.e48756e8e-53fe-404a-854f-dd90a26a9ff8>	1.0
-<http://www.spaten.com/trace-data#820526>	<http://www.hobbit.e92582a16-9b6a-4626-a9f8-5e0b8a7beaf0>	1.0
-<http://www.spaten.com/trace-data#927218>	<http://www.hobbit.e0fefbd4b-f54f-4882-b58b-27b8a62f41ef>	1.0
-<http://www.spaten.com/trace-data#60491>	<http://www.hobbit.e5a38d817-d2d1-489e-a927-7f305e50a2e9>	1.0
-<http://www.spaten.com/trace-data#332418>	<http://www.hobbit.e73e3f256-4bfa-4c4c-8066-482394c34b51>	1.0
-<http://www.spaten.com/trace-data#62051>	<http://www.hobbit.e83b972f0-412e-4cbe-822f-41f8917ff1ed>	1.0
-<http://www.spaten.com/trace-data#21948>	<http://www.hobbit.e6ee09b43-1a1b-42da-be8c-996e84fa4f83>	1.0
-<http://www.spaten.com/trace-data#762315>	<http://www.hobbit.e4f2be9ba-6eea-4a9d-b296-5d417e7aea1f>	1.0
-<http://www.spaten.com/trace-data#402929>	<http://www.hobbit.ec5086bd3-eb37-412c-82f8-4f97420ea275>	1.0
-<http://www.spaten.com/trace-data#770119>	<http://www.hobbit.e90f5456e-dd10-4f48-9441-118ed51c7edf>	1.0
+<http://www.spaten.com/trace-data#490030>	<http://www.hobbit.ed6a9e440-967c-4156-984d-90ce18bb6583>  "1.0"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://www.spaten.com/trace-data#490030>	<http://www.hobbit.ef2cee069-9e4c-4d1a-bdfe-ca318db3908e>  "1.0"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://www.spaten.com/trace-data#472323>	<http://www.hobbit.e4670126c-3db6-48d7-a4eb-8008578a71ca>  "1.0"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://www.spaten.com/trace-data#837718>	<http://www.hobbit.edf6fbe1d-f1d8-4c25-943e-17829f3d34a0>  "1.0"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://www.spaten.com/trace-data#56212>	<http://www.hobbit.e66bfe125-dbc6-435c-b064-dc18ada961f8>  "1.0"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://www.spaten.com/trace-data#56212>	<http://www.hobbit.e3a7557ad-eaaf-4dbf-b81e-42d24b836b50>  "1.0"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://www.spaten.com/trace-data#740123>	<http://www.hobbit.e66bfe125-dbc6-435c-b064-dc18ada961f8>  "1.0"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://www.spaten.com/trace-data#740123>	<http://www.hobbit.e3a7557ad-eaaf-4dbf-b81e-42d24b836b50>  "1.0"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://www.spaten.com/trace-data#44152>	<http://www.hobbit.e08a5294d-3df8-4405-bca5-cdbbe7584d9f>  "1.0"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://www.spaten.com/trace-data#852717>	<http://www.hobbit.ee2babc98-547c-48b4-aa8e-d45dd170a2e9>  "1.0"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://www.spaten.com/trace-data#872226>	<http://www.hobbit.ed7301e53-418c-4f57-8e39-1cb8351a5aeb>  "1.0"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://www.spaten.com/trace-data#162531>	<http://www.hobbit.ed6a9e440-967c-4156-984d-90ce18bb6583>  "1.0"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://www.spaten.com/trace-data#162531>	<http://www.hobbit.ef2cee069-9e4c-4d1a-bdfe-ca318db3908e>  "1.0"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://www.spaten.com/trace-data#66404>	<http://www.hobbit.e6528e3fd-4905-4734-84fd-e104ad697303>  "1.0"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://www.spaten.com/trace-data#207815>	<http://www.hobbit.e48756e8e-53fe-404a-854f-dd90a26a9ff8>  "1.0"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://www.spaten.com/trace-data#820526>	<http://www.hobbit.e92582a16-9b6a-4626-a9f8-5e0b8a7beaf0>  "1.0"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://www.spaten.com/trace-data#927218>	<http://www.hobbit.e0fefbd4b-f54f-4882-b58b-27b8a62f41ef>  "1.0"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://www.spaten.com/trace-data#60491>	<http://www.hobbit.e5a38d817-d2d1-489e-a927-7f305e50a2e9>  "1.0"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://www.spaten.com/trace-data#332418>	<http://www.hobbit.e73e3f256-4bfa-4c4c-8066-482394c34b51>  "1.0"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://www.spaten.com/trace-data#62051>	<http://www.hobbit.e83b972f0-412e-4cbe-822f-41f8917ff1ed>  "1.0"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://www.spaten.com/trace-data#21948>	<http://www.hobbit.e6ee09b43-1a1b-42da-be8c-996e84fa4f83>  "1.0"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://www.spaten.com/trace-data#762315>	<http://www.hobbit.e4f2be9ba-6eea-4a9d-b296-5d417e7aea1f>  "1.0"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://www.spaten.com/trace-data#402929>	<http://www.hobbit.ec5086bd3-eb37-412c-82f8-4f97420ea275>  "1.0"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://www.spaten.com/trace-data#770119>	<http://www.hobbit.e90f5456e-dd10-4f48-9441-118ed51c7edf>  "1.0"^^<http://www.w3.org/2001/XMLSchema#decimal> .
