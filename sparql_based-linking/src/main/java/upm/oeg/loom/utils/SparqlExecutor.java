@@ -64,7 +64,7 @@ public class SparqlExecutor {
      * @return the model / construct
      */
     public static Model getModel(String sparql, Model source) {
-        LOGGER.info("run sparql query:\n{} ", sparql);
+//        LOGGER.info("run sparql query:\n{} ", sparql);
         query = QueryFactory.create(sparql);
         qexec = QueryExecutionFactory.create(query, source);
         return qexec.execConstruct();
@@ -78,7 +78,7 @@ public class SparqlExecutor {
      * @return the model / construct
      */
     public static Model getModel(String sparql, String filename) {
-        LOGGER.info("run sparql query from the file {}:", filename);
+//        LOGGER.info("run sparql query from the file {}:", filename);
         Model source = RDFDataMgr.loadModel(filename);
         return getModel(sparql, source);
     }
@@ -108,8 +108,8 @@ public class SparqlExecutor {
             return;
         }
         Lang lang = RDFLanguages.filenameToLang(target);
-        LOGGER.info(
-                "Save sparql query:\n{} \nresult into {}, format: {}", sparql, target, lang.getName());
+//        LOGGER.info(
+//                "Save sparql query:\n{} \nresult into {}, format: {}", sparql, target, lang.getName());
         OutputStream out = FileUtils.openOutputStream(new File(target));
         RDFDataMgr.write(out, model, lang);
     }

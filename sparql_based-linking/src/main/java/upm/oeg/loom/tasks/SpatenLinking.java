@@ -21,50 +21,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-class ConfusionMatrix {
-    private int tp;
-    private int fp;
-    private double precision;
 
-    ConfusionMatrix(int tp, int fp) {
-        this.tp = tp;
-        this.fp = fp;
-        this.precision = (double) tp / (tp + fp);
-    }
-
-    public int getTp() {
-        return tp;
-    }
-
-    public void setTp(int tp) {
-        this.tp = tp;
-    }
-
-    public int getFp() {
-        return fp;
-    }
-
-    public void setFp(int fp) {
-        this.fp = fp;
-    }
-
-    public double getPrecision() {
-        return precision;
-    }
-
-    public void setPrecision(double precision) {
-        this.precision = precision;
-    }
-
-    @Override
-    public String toString() {
-        return JSON.toJSONString(this, JSONWriter.Feature.PrettyFormat);
-    }
-
-    void save(File file) throws IOException {
-        FileUtils.writeStringToFile(file, this.toString(), StandardCharsets.UTF_8);
-    }
-}
 
 class Spaten {
     private String name;
@@ -143,7 +100,6 @@ public class SpatenLinking {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SpatenLinking.class);
 
-
     private List<Spaten> loadSpatens() throws IOException {
         List<Spaten> spatens = new ArrayList<>();
         try (Stream<Path> paths = Files.walk(Paths.get("./src/main/resources/Spaten"))) {
@@ -217,7 +173,7 @@ public class SpatenLinking {
                     + "  ?target strdf:hasGeometry ?sourceGeometry .\n"
                     + "}\n";
             Model targetModel = SparqlExecutor.getModel(targetSparql, spaten.getTargetFile().getPath());
-            String sparql = "PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n"
+            String resultSparql = "PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n"
                     + "PREFIX geometry:    <http://oeg.upm.es/loom-ld/functions/linking/geometry#>\n"
                     + "PREFIX strdf:     <http://strdf.di.uoa.gr/ontology#>\n"
                     + "CONSTRUCT {\n"
@@ -231,14 +187,17 @@ public class SpatenLinking {
                     + "  BIND ( geometry:" + spaten.getRelation() + " (?sourceGeometry, ?targetGeometry ) AS ?relation )\n"
                     + "  FILTER ( ?relation = TRUE )\n"
                     + "}\n";
-            Model model = sourceModel.union(targetModel);
-            SparqlExecutor.saveModel(sparql, model, spaten.getResultFile().getPath());
+            SparqlExecutor.saveModel(resultSparql, sourceModel.union(targetModel), spaten.getResultFile().getPath());
 
             Model resultModel = RDFDataMgr.loadModel(spaten.getResultFile().getPath());
             Model goldenModel = RDFDataMgr.loadModel(spaten.getGoldenFile().getPath());
             int tp = Math.toIntExact(resultModel.intersection(goldenModel).size());
             int fp = Math.toIntExact(resultModel.difference(goldenModel).size());
             ConfusionMatrix cm = new ConfusionMatrix(tp, fp);
+            if (cm.getPrecision() < 1.0) {
+                LOGGER.error("{}, Precision is less than 1.0", spaten.getResultFile().getName());
+            }
+            System.out.println(cm);
             cm.save(spaten.getConfusionMatrixFile());
         }
 
