@@ -234,7 +234,6 @@ public class SpatenLinking {
             Model model = sourceModel.union(targetModel);
             SparqlExecutor.saveModel(sparql, model, spaten.getResultFile().getPath());
 
-
             Model resultModel = RDFDataMgr.loadModel(spaten.getResultFile().getPath());
             Model goldenModel = RDFDataMgr.loadModel(spaten.getGoldenFile().getPath());
             int tp = Math.toIntExact(resultModel.intersection(goldenModel).size());
