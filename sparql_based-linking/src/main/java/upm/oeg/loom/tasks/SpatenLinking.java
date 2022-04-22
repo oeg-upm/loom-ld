@@ -1,5 +1,8 @@
 package upm.oeg.loom.tasks;
 
+import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.JSONWriter;
+import org.apache.commons.io.FileUtils;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.riot.RDFDataMgr;
 import org.slf4j.Logger;
@@ -8,8 +11,8 @@ import upm.oeg.loom.enums.GeometryRelation;
 import upm.oeg.loom.functions.CustomFunctions;
 import upm.oeg.loom.utils.SparqlExecutor;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -18,6 +21,51 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+class ConfusionMatrix {
+    private int tp;
+    private int fp;
+    private double precision;
+
+    ConfusionMatrix(int tp, int fp) {
+        this.tp = tp;
+        this.fp = fp;
+        this.precision = (double) tp / (tp + fp);
+    }
+
+    public int getTp() {
+        return tp;
+    }
+
+    public void setTp(int tp) {
+        this.tp = tp;
+    }
+
+    public int getFp() {
+        return fp;
+    }
+
+    public void setFp(int fp) {
+        this.fp = fp;
+    }
+
+    public double getPrecision() {
+        return precision;
+    }
+
+    public void setPrecision(double precision) {
+        this.precision = precision;
+    }
+
+    @Override
+    public String toString() {
+        return JSON.toJSONString(this, JSONWriter.Feature.PrettyFormat);
+    }
+
+    void save(File file) throws IOException {
+        FileUtils.writeStringToFile(file, this.toString(), StandardCharsets.UTF_8);
+    }
+}
+
 class Spaten {
     private String name;
     private GeometryRelation relation;
@@ -25,7 +73,7 @@ class Spaten {
     private File targetFile;
     private File goldenFile;
     private File resultFile;
-    private File evaluation;
+    private File confusionMatrixFile;
 
     public Spaten() {
         name = "";
@@ -79,12 +127,12 @@ class Spaten {
         this.resultFile = resultFile;
     }
 
-    public File getEvaluation() {
-        return evaluation;
+    public File getConfusionMatrixFile() {
+        return confusionMatrixFile;
     }
 
-    public void setEvaluation(File evaluation) {
-        this.evaluation = evaluation;
+    public void setConfusionMatrixFile(File confusionMatrixFile) {
+        this.confusionMatrixFile = confusionMatrixFile;
     }
 }
 
@@ -115,8 +163,8 @@ public class SpatenLinking {
                     spaten.setRelation(relation);
                     String resultFile = String.format("./src/main/resources/Spaten/%s/%s/ResultDatasets/%smappings.nt", name, strings[6], strings[6]);
                     spaten.setResultFile(new File(resultFile));
-                    String evaluationFile = String.format("./src/main/resources/Spaten/%s/%s/Evaluation/%s-%s-Evaluation.json", name, strings[6], name, strings[6]);
-                    spaten.setEvaluation(new File(evaluationFile));
+                    String evaluationFile = String.format("./src/main/resources/Spaten/%s/%s/%s-%s-ConfusionMatrix.json", name, strings[6], name, strings[6]);
+                    spaten.setConfusionMatrixFile(new File(evaluationFile));
                 }
 
                 switch (fileType) {
@@ -144,6 +192,7 @@ public class SpatenLinking {
         SpatenLinking spatenLinking = new SpatenLinking();
         List<Spaten> spatens = spatenLinking.loadSpatens();
         for (Spaten spaten : spatens) {
+            LOGGER.info(spaten.getName() + "-" + spaten.getRelation());
             String sourceSparql = "PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n"
                     + "PREFIX geometry:    <http://oeg.upm.es/loom-ld/functions/linking/geometry#>\n"
                     + "PREFIX strdf:     <http://strdf.di.uoa.gr/ontology#>\n"
@@ -185,18 +234,14 @@ public class SpatenLinking {
             Model model = sourceModel.union(targetModel);
             SparqlExecutor.saveModel(sparql, model, spaten.getResultFile().getPath());
 
-            LOGGER.info(spaten.getName() + "-" + spaten.getRelation());
+
             Model resultModel = RDFDataMgr.loadModel(spaten.getResultFile().getPath());
             Model goldenModel = RDFDataMgr.loadModel(spaten.getGoldenFile().getPath());
-            LOGGER.info("Result model size: " + resultModel.size());
-            LOGGER.info("Golden model size: " + goldenModel.size());
-            LOGGER.info("Result has, but golden does not: " + (resultModel.size() - goldenModel.size()));
-            resultModel.difference(goldenModel).write(System.out, "NT");
-            LOGGER.info("Golden has, but result does not: " + (goldenModel.size() - resultModel.size()));
-            goldenModel.difference(resultModel).write(System.out, "NT");
-            LOGGER.info("Result and golden are equal: " + resultModel.isIsomorphicWith(goldenModel));
+            int tp = Math.toIntExact(resultModel.intersection(goldenModel).size());
+            int fp = Math.toIntExact(resultModel.difference(goldenModel).size());
+            ConfusionMatrix cm = new ConfusionMatrix(tp, fp);
+            cm.save(spaten.getConfusionMatrixFile());
         }
-
 
 
     }

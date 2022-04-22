@@ -17,6 +17,7 @@
         <maven.compiler.target>11</maven.compiler.target>
         <slf4j.version>1.7.36</slf4j.version>
         <jts.version>1.18.2</jts.version>
+        <fastjosn.version>2.0.1</fastjosn.version>
     </properties>
 
     <dependencies>
@@ -26,11 +27,11 @@
             <artifactId>jena-arq</artifactId>
             <version>${jena.version}</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.apache.jena</groupId>-->
-<!--            <artifactId>jena-geosparql</artifactId>-->
-<!--            <version>${jena.version}</version>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.apache.jena</groupId>-->
+        <!--            <artifactId>jena-geosparql</artifactId>-->
+        <!--            <version>${jena.version}</version>-->
+        <!--        </dependency>-->
         <!-- String similarity functions -->
         <dependency>
             <groupId>info.debatty</groupId>
@@ -55,8 +56,11 @@
             <artifactId>jts-core</artifactId>
             <version>${jts.version}</version>
         </dependency>
-
-
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${fastjosn.version}</version>
+        </dependency>
 
 
     </dependencies>
