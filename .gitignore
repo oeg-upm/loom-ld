@@ -34,3 +34,4 @@ build/
 
 ### Target ###
 **/target/
+.DS_Store
