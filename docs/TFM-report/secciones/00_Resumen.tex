@@ -1,6 +1,9 @@
 \chapter*{Summary}
 
-<Here is the summary of the TFM. Maximum extension 2 pages.>>
+\par This thesis is about the specification and development of link discovery algorithms and development of knowledge graph linker. In other words, it is an RDF linking task which generates relationships between RDF resources from different or the same dataset. RDF linking relies on one or more link rules to create such links, like text similarity or geographic relationship, which means we need specifying the conditions under which two RDF resources can be considered the same. 
+
+\par RDF linking is a computational expensive task since it has to compare all the resources from one dataset, with all the resources from another. Nowadays, there are few engines implemented this goal, like Limes and Silk. However, most of them usually implementations rely on their link rule language, so this makes it impossible to use the same link rule in two or more engines. As a result, currently, users find it difficult to use these implementations but the RDF linking is a very common task need to be finished. For this reason, we create a more general way to linking ontologies based on SPARQL by implementing functions in Apache Jena, which is a SPARQL query engine. So as a software engineer, you don't need to learn other specific language to linking ontology you want, the SPARQL query is enough.
+
 
 %%--------------
 \newpage
@@ -13,4 +16,5 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Final del resumen. 
+%% End of the summary.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
