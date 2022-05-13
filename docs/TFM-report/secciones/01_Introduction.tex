@@ -1,15 +1,28 @@
 \chapter{Introduction}
 
+\section{Current Situation and Problems}
 
+Today is the era of big data, there are endless data generated every day, and most of them are heterogeneity on datasets, formats, granularity, so it is hard for machine-read and analyzing. That is the reason scientists and research institutions have come up with the concept of semantic web, whose goal is to make Internet data machine-readable. Semantic web helps to store, manage and share knowledge more efficiently so that computer can use such resources without human effort on parsing the data. On semantic web, the most common framework is The Resource Description Framework (RDF), which is the standard data model representation for knowledge on the Web of Data. RDF is a quite effective way to process and link data, even if the schemas are different. It uses Internationalized Resource Identifier (IRI) to extend the graph, which is a directed, labelled graph, and its edge represent named links between two resources. 
 
-\section{Current Situation}
-
-\section{Where is the problem?}
-
-\section{Goods}
+The number of datasets published on the web is constantly increasing(e.g., LinkedGeoData with more than 30 billion triples). Besides, the Linked Data paradigm is based on the unconstrained publication of information by different publishers, and the interlinking of Web resources across knowledge bases. It is not difficult to imagine that there are a lot of redundant and duplicate RDFs here, in order to make our semantic network more efficient and concise, we need to link RDFs together according specific rules, which is the goal of this project.
 
 
 
+\section{The Linking Task}
+
+Actually, in most cases, it is really hard to link the cross-dataset, and we must be need using Instance Matching (IM) and Link Discovery tools according a given context. Indeed, here are few engines implemented this goal, like Limes and Silk. But most of them usually implementations rely on their link rule language, so this makes it impossible to use the same link rule in two or more engines. As a result, currently, users find it difficult to use these implementations but the RDF linking is very common tasks need to be finished. Besides, RDF linking is a computational expensive task since it has to compare all the resources form one dataset, with all the resources from another. Then, for each RDF resource one or more data comparisons must be performed. A result, the way in which link rules are expressed (language), built (no of comparisons, restrictions to reduce the number of RDF resources to be compared, etc.), and processed has a high impact on the performance results.
+
+For this reason, we create a more general way to linking ontologies based on SPARQL by implementing functions in Apache Jena, which is a SPARQL query engine. So as a software engineer, you don't need to learn other specific language to linking ontology you want, the SPARQL query is enough.
+
+
+
+
+
+
+\newpage
+
+
+------------------------ instructions for the template -----------------------------
 
 
 %%---------------------------------------------------------
