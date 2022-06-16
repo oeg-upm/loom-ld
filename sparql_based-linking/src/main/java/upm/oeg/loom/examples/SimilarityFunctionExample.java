@@ -9,57 +9,57 @@ import upm.oeg.loom.utils.SparqlExecutor;
  * @author Wenqi
  */
 public class SimilarityFunctionExample {
-  private static final String SPARQL1 =
-      "PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n"
-          + "PREFIX owl:     <http://www.w3.org/2002/07/owl#>\n"
-          + "PREFIX loom:    <http://oeg.upm.es/loom-ld/functions/link#>\n"
-          + "PREFIX foaf:    <http://xmlns.com/foaf/0.1/>\n"
-          + "PREFIX dbo:    <http://dbpedia.org/ontology/>\n"
-          + "PREFIX schema: <http://schema.org/>\n"
-          + "CONSTRUCT {\n"
-          + "   ?city1 owl:sameAs ?city2 .\n"
-          + "}\n"
-          + "WHERE {\n"
-          + "   SERVICE <http://dbpedia-live.openlinksw.com/sparql?timeout=3000> { \n"
-          + "     ?city1 rdf:type schema:City.\n"
-          + "     ?city1 foaf:name ?cityName1. \n"
-          + "   }\n"
-          + "   SERVICE <http://live.dbpedia.org/sparql?timeout=3000> {\n"
-          + "     ?city2 rdf:type dbo:City.\n"
-          + "     ?city2 foaf:name ?cityName2. \n"
-          + "   }\n"
-          + "   FILTER ( loom:levenshtein(?cityName1, ?cityName2 ) > 0.9)\n"
-          + "}\n"
-          + "Limit 20";
-  private static final String SPARQL2 =
-      "PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n"
-          + "PREFIX owl:      <http://www.w3.org/2002/07/owl#>\n"
-          + "PREFIX loom:     <http://oeg.upm.es/loom-ld/functions/link#>\n"
-          + "PREFIX foaf:     <http://xmlns.com/foaf/0.1/>\n"
-          + "PREFIX dbo:      <http://dbpedia.org/ontology/>\n"
-          + "PREFIX wd:       <http://www.wikidata.org/entity/>\n"
-          + "PREFIX wdt:      <http://www.wikidata.org/prop/direct/>\n"
-          + "CONSTRUCT {\n"
-          + "   ?scientist1 owl:sameAs ?scientist2 .\n"
-          + "   ?scientist1 foaf:name ?name1 .\n"
-          + "   ?scientist2 foaf:name ?name2 \n"
-          + "}\n"
-          + "WHERE {\n"
-          + "   SERVICE <http://live.dbpedia.org/sparql?timeout=30000> {\n"
-          + "     ?scientist1 rdf:type dbo:Scientist.\n"
-          + "     ?scientist1 foaf:name ?name1. \n"
-          + "   }\n"
-          + "   SERVICE <https://query.wikidata.org/sparql?timeout=30000> {\n"
-          + "     ?scientist2 wdt:P106 wd:Q901.\n"
-          + "     ?scientist2 wdt:P1559 ?name2.\n"
-          + "   }\n"
-          + "   FILTER ( loom:levenshtein(?name1, ?name2 ) > 0.85)\n"
-          + "}\n"
-          + "Limit 8";
+    private static final String SPARQL1 =
+            "PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n"
+                    + "PREFIX owl:     <http://www.w3.org/2002/07/owl#>\n"
+                    + "PREFIX loom:    <https://oeg.upm.es/loom-ld/functions/linking/text#>\n"
+                    + "PREFIX foaf:    <http://xmlns.com/foaf/0.1/>\n"
+                    + "PREFIX dbo:    <http://dbpedia.org/ontology/>\n"
+                    + "PREFIX schema: <http://schema.org/>\n"
+                    + "CONSTRUCT {\n"
+                    + "   ?city1 owl:sameAs ?city2 .\n"
+                    + "}\n"
+                    + "WHERE {\n"
+                    + "   SERVICE <http://dbpedia-live.openlinksw.com/sparql?timeout=3000> { \n"
+                    + "     ?city1 rdf:type schema:City.\n"
+                    + "     ?city1 foaf:name ?cityName1. \n"
+                    + "   }\n"
+                    + "   SERVICE <http://live.dbpedia.org/sparql?timeout=3000> {\n"
+                    + "     ?city2 rdf:type dbo:City.\n"
+                    + "     ?city2 foaf:name ?cityName2. \n"
+                    + "   }\n"
+                    + "   FILTER ( loom:lcs(?cityName1, ?cityName2 ) > 0.9)\n"
+                    + "}\n"
+                    + "Limit 20";
+    private static final String SPARQL2 =
+            "PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n"
+                    + "PREFIX owl:      <http://www.w3.org/2002/07/owl#>\n"
+                    + "PREFIX loom:     <https://oeg.upm.es/loom-ld/functions/linking/text#>\n"
+                    + "PREFIX foaf:     <http://xmlns.com/foaf/0.1/>\n"
+                    + "PREFIX dbo:      <http://dbpedia.org/ontology/>\n"
+                    + "PREFIX wd:       <http://www.wikidata.org/entity/>\n"
+                    + "PREFIX wdt:      <http://www.wikidata.org/prop/direct/>\n"
+                    + "CONSTRUCT {\n"
+                    + "   ?scientist1 owl:sameAs ?scientist2 .\n"
+                    + "   ?scientist1 foaf:name ?name1 .\n"
+                    + "   ?scientist2 foaf:name ?name2 \n"
+                    + "}\n"
+                    + "WHERE {\n"
+                    + "   SERVICE <http://live.dbpedia.org/sparql?timeout=30000> {\n"
+                    + "     ?scientist1 rdf:type dbo:Scientist.\n"
+                    + "     ?scientist1 foaf:name ?name1. \n"
+                    + "   }\n"
+                    + "   SERVICE <https://query.wikidata.org/sparql?timeout=30000> {\n"
+                    + "     ?scientist2 wdt:P106 wd:Q901.\n"
+                    + "     ?scientist2 wdt:P1559 ?name2.\n"
+                    + "   }\n"
+                    + "   FILTER ( loom:lcs(?name1, ?name2 ) > 0.85)\n"
+                    + "}\n"
+                    + "Limit 8";
 
-  public static void main(String[] args) {
-    CustomFunctions.loadSimilarityFunctions();
+    public static void main(String[] args) {
+        CustomFunctions.loadSimilarityFunctions();
 
-    SparqlExecutor.printModel(SPARQL2);
-  }
+        SparqlExecutor.printModel(SPARQL2);
+    }
 }

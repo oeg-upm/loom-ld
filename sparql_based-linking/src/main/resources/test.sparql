@@ -1,25 +1,10 @@
-PREFIX :        <http://www.semanticweb.org/chetan/ontologies/2014/5/untitled-ontology-11#>
-PREFIX owl:     <http://www.w3.org/2002/07/owl#>
-PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX foaf:    <http://xmlns.com/foaf/0.1/>
-CONSTRUCT {
-    ?city1 owl:sameAs ?city2 .
-} WHERE {
-    SERVICE <https://es.dbpedia.org/sparql> {
-        ?city1 foaf:name ?fullName1 .
-        VALUES ?city1 {
-            <http://es.dbpedia.org/resource/Sevilla>
-            <http://dbpedia.org/resource/Madrid>
-            <http://dbpedia.org/resource/Soria>
-        }
-    }
-    SERVICE <https://es.dbpedia.org/sparql> {
-        ?city2 foaf:name ?fullName2 .
-        VALUES ?city2 {
-            <http://dbpedia.org/resource/Madrid>
-            <http://dbpedia.org/resource/Soria>
-        }
-    }
-    FILTER ( ?fullName1 = ?fullName2 )
+PREFIX oeg: <https://oeg.fi.upm.es/researcher#>
+PREFIX github: <https://github.com/oeg-upm/>
+PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
+
+SELECT ?name ?projectName
+WHERE {
+    ?person vcard:hasProject ?project .
+    ?project vcard:hasName ?projectName .
+    ?person vcard:hasName ?name .
 }

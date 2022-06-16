@@ -13,31 +13,34 @@ import upm.oeg.loom.functions.similarities.*;
  * @author Wenqi
  */
 public class CustomFunctions {
-  private static final String LINK = CustomARQConstants.LINK_PREFIX;
-  private static final String GEOMETRY_PREFIX = CustomARQConstants.GEOMETRY_PREFIX;
+    private static final String TEXT_PREFIX = CustomARQConstants.TEXT_PREFIX;
+    private static final String GEOMETRY_PREFIX = CustomARQConstants.GEOMETRY_PREFIX;
+    private static final FunctionRegistry FUNCTION_REGISTRY = FunctionRegistry.get();
 
-  public static void loadSimilarityFunctions() {
-    put(LINK + SimilarityAlgorithm.COSINE, CosineSimilarityFunction.class);
-    put(LINK + SimilarityAlgorithm.JACCARD, JaccardSimilarityFunction.class);
-    put(LINK + SimilarityAlgorithm.JARO_WINKLER, JaroWinklerSimilarityFunction.class);
-    put(LINK + SimilarityAlgorithm.LEVENSHTEIN, LevenshteinSimilarityFunction.class);
-    put(LINK + SimilarityAlgorithm.RATCLIFF_OBERSHELP, RatcliffObershelpSimilarityFunction.class);
-  }
+    private CustomFunctions() {
+    }
 
-  public static void loadGeometryFunctions() {
-    put(GEOMETRY_PREFIX + GeometryRelation.CONTAINS, GeometryContainsFunction.class);
-    put(GEOMETRY_PREFIX + GeometryRelation.COVERED_BY, GeometryCoveredByFunction.class);
-    put(GEOMETRY_PREFIX + GeometryRelation.COVERS, GeometryCoversFunction.class);
-    put(GEOMETRY_PREFIX + GeometryRelation.DISJOINT, GeometryDisjointFunction.class);
-    put(GEOMETRY_PREFIX + GeometryRelation.EQUALS, GeometryEqualsFunction.class);
-    put(GEOMETRY_PREFIX + GeometryRelation.INTERSECTS, GeometryIntersectsFunction.class);
-    put(GEOMETRY_PREFIX + GeometryRelation.OVERLAPS, GeometryOverlapsFunction.class);
-    put(GEOMETRY_PREFIX + GeometryRelation.TOUCHES, GeometryTouchesFunction.class);
-    put(GEOMETRY_PREFIX + GeometryRelation.CROSSES, GeometryCrossesFunction.class);
-    put(GEOMETRY_PREFIX + GeometryRelation.WITHIN, GeometryWithinFunction.class);
-  }
+    public static void loadSimilarityFunctions() {
+        FUNCTION_REGISTRY.put(TEXT_PREFIX + SimilarityAlgorithm.COSINE, CosineSimilarityFunction.class);
+        FUNCTION_REGISTRY.put(TEXT_PREFIX + SimilarityAlgorithm.JACCARD, JaccardSimilarityFunction.class);
+        FUNCTION_REGISTRY.put(TEXT_PREFIX + SimilarityAlgorithm.JARO_WINKLER, JaroWinklerSimilarityFunction.class);
+        FUNCTION_REGISTRY.put(TEXT_PREFIX + SimilarityAlgorithm.LEVENSHTEIN, LevenshteinSimilarityFunction.class);
+        FUNCTION_REGISTRY.put(TEXT_PREFIX + SimilarityAlgorithm.LCS, LCSSimilarityFunction.class);
+        FUNCTION_REGISTRY.put(TEXT_PREFIX + SimilarityAlgorithm.RATCLIFF_OBERSHELP, RatcliffObershelpSimilarityFunction.class);
+    }
 
-  private static void put(String uri, Class<?> funcClass) {
-    FunctionRegistry.get().put(uri, funcClass);
-  }
+    public static void loadGeometryFunctions() {
+        FUNCTION_REGISTRY.put(GEOMETRY_PREFIX + GeometryRelation.CONTAINS, GeometryContainsFunction.class);
+        FUNCTION_REGISTRY.put(GEOMETRY_PREFIX + GeometryRelation.COVERED_BY, GeometryCoveredByFunction.class);
+        FUNCTION_REGISTRY.put(GEOMETRY_PREFIX + GeometryRelation.COVERS, GeometryCoversFunction.class);
+        FUNCTION_REGISTRY.put(GEOMETRY_PREFIX + GeometryRelation.DISJOINT, GeometryDisjointFunction.class);
+        FUNCTION_REGISTRY.put(GEOMETRY_PREFIX + GeometryRelation.EQUALS, GeometryEqualsFunction.class);
+        FUNCTION_REGISTRY.put(GEOMETRY_PREFIX + GeometryRelation.INTERSECTS, GeometryIntersectsFunction.class);
+        FUNCTION_REGISTRY.put(GEOMETRY_PREFIX + GeometryRelation.OVERLAPS, GeometryOverlapsFunction.class);
+        FUNCTION_REGISTRY.put(GEOMETRY_PREFIX + GeometryRelation.TOUCHES, GeometryTouchesFunction.class);
+        FUNCTION_REGISTRY.put(GEOMETRY_PREFIX + GeometryRelation.CROSSES, GeometryCrossesFunction.class);
+        FUNCTION_REGISTRY.put(GEOMETRY_PREFIX + GeometryRelation.WITHIN, GeometryWithinFunction.class);
+    }
+
+
 }

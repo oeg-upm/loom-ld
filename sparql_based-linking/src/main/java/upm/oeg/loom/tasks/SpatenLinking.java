@@ -22,7 +22,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 
-
 class Spaten {
     private String name;
     private GeometryRelation relation;
@@ -150,7 +149,7 @@ public class SpatenLinking {
         for (Spaten spaten : spatens) {
             LOGGER.info(spaten.getName() + "-" + spaten.getRelation());
             String sourceSparql = "PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n"
-                    + "PREFIX geometry:    <http://oeg.upm.es/loom-ld/functions/linking/geometry#>\n"
+                    + "PREFIX geometry:    <https://oeg.upm.es/loom-ld/functions/linking/geometry#>\n"
                     + "PREFIX strdf:     <http://strdf.di.uoa.gr/ontology#>\n"
                     + "CONSTRUCT {\n"
                     + "  ?source strdf:hasGeometry ?sourceGeometry .\n"
@@ -163,7 +162,7 @@ public class SpatenLinking {
             Model sourceModel = SparqlExecutor.getModel(sourceSparql, spaten.getSourceFile().getPath());
 
             String targetSparql = "PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n"
-                    + "PREFIX geometry:    <http://oeg.upm.es/loom-ld/functions/linking/geometry#>\n"
+                    + "PREFIX geometry:    <https://oeg.upm.es/loom-ld/functions/linking/geometry#>\n"
                     + "PREFIX strdf:     <http://strdf.di.uoa.gr/ontology#>\n"
                     + "CONSTRUCT {\n"
                     + "  ?target strdf:hasGeometry ?sourceGeometry .\n"
@@ -174,7 +173,7 @@ public class SpatenLinking {
                     + "}\n";
             Model targetModel = SparqlExecutor.getModel(targetSparql, spaten.getTargetFile().getPath());
             String resultSparql = "PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n"
-                    + "PREFIX geometry:    <http://oeg.upm.es/loom-ld/functions/linking/geometry#>\n"
+                    + "PREFIX geometry:    <https://oeg.upm.es/loom-ld/functions/linking/geometry#>\n"
                     + "PREFIX strdf:     <http://strdf.di.uoa.gr/ontology#>\n"
                     + "CONSTRUCT {\n"
                     + "   ?source ?target 1.0 \n"

@@ -18,8 +18,8 @@ import java.io.File;
 public class SPIMBENCHLinking {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SpatenLinking.class);
-    private static final String TBOX_1_FILENAME = "SPIMBENCH/SPIMBENCH_large/Tbox1.nt";
-    private static final String TBOX_2_FILENAME = "SPIMBENCH/SPIMBENCH_large/Tbox2.nt";
+    private static final String TBOX_1_FILENAME = "SPIMBENCH/SPIMBENCH_small/Tbox1.nt";
+    private static final String TBOX_2_FILENAME = "SPIMBENCH/SPIMBENCH_small/Tbox2.nt";
 
     private static final String REFALIGN_FILENAME = "SPIMBENCH/SPIMBENCH_small/refalign.rdf";
 
@@ -28,7 +28,7 @@ public class SPIMBENCHLinking {
     private static final String SPARQL1 =
             "PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n"
                     + "PREFIX rdfs:     <http://www.w3.org/2000/01/rdf-schema#>\n"
-                    + "PREFIX loom:     <http://oeg.upm.es/loom-ld/functions/link#>\n"
+                    + "PREFIX loom:     <https://oeg.upm.es/loom-ld/functions/linking/text#>\n"
                     + "PREFIX cwork:    <http://www.bbc.co.uk/ontologies/creativework/>\n"
                     + "PREFIX seals:    <http://www.seals-project.eu/ontologies/SEALSMetadata.owl#>\n"
                     + "CONSTRUCT {\n"
@@ -43,12 +43,12 @@ public class SPIMBENCHLinking {
                     + "  ?thing cwork:title ?title .\n"
                     + "  ?thing cwork:shortTitle ?shortTitle .\n"
                     + "  ?thing cwork:description ?description .\n"
-                    + "  FILTER(?work IN (cwork:NewsItem, cwork:BlogPost, cwork:Programme))\n"
+//                    + "  FILTER(?work IN (cwork:NewsItem, cwork:BlogPost, cwork:Programme))\n"
                     + "}\n";
     private static final String SPARQL2 =
             "PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n"
                     + "PREFIX rdfs:     <http://www.w3.org/2000/01/rdf-schema#>\n"
-                    + "PREFIX loom:     <http://oeg.upm.es/loom-ld/functions/link#>\n"
+                    + "PREFIX loom:     <https://oeg.upm.es/loom-ld/functions/linking/text#>\n"
                     + "PREFIX cwork:    <http://www.bbc.co.uk/ontologies/creativework/>\n"
                     + "PREFIX seals:    <http://www.seals-project.eu/ontologies/SEALSMetadata.owl#>\n"
                     + "CONSTRUCT {\n"
@@ -63,14 +63,14 @@ public class SPIMBENCHLinking {
                     + "  ?thing cwork:title ?title .\n"
                     + "  ?thing cwork:shortTitle ?shortTitle .\n"
                     + "  ?thing cwork:description ?description .\n"
-                    + "  FILTER(?work IN (cwork:NewsItem, cwork:BlogPost, cwork:Programme))\n"
+//                    + "  FILTER(?work IN (cwork:NewsItem, cwork:BlogPost, cwork:Programme))\n"
                     + "}\n";
 
     private static final String RESULT_SPARQL =
             "PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n"
                     + "PREFIX rdfs:     <http://www.w3.org/2000/01/rdf-schema#>\n"
                     + "PREFIX owl:      <http://www.w3.org/2002/07/owl#>\n"
-                    + "PREFIX loom:     <http://oeg.upm.es/loom-ld/functions/link#>\n"
+                    + "PREFIX loom:     <https://oeg.upm.es/loom-ld/functions/linking/text#>\n"
                     + "PREFIX cwork:    <http://www.bbc.co.uk/ontologies/creativework/>\n"
                     + "PREFIX seals:    <http://www.seals-project.eu/ontologies/SEALSMetadata.owl#>\n"
                     + "CONSTRUCT {\n"
@@ -83,7 +83,7 @@ public class SPIMBENCHLinking {
                     + "  ?thing1 cwork:title ?title1 .\n"
                     + "  ?thing1 seals:isLocatedAt \"tbox2.nt\" .\n"
                     + "  ?thing2 cwork:title ?title2 .\n"
-                    + "  BIND(loom:jaro-winkler(?title1, ?title2 ) AS ?grade)"
+                    + "  BIND(loom:levenshtein(?title1, ?title2 ) AS ?grade)"
                     + "  FILTER ( ?grade > 0.85 && ?thing1 != ?thing2)\n"
                     + "}\n";
 
