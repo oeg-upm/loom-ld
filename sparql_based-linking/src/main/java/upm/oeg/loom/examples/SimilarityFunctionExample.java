@@ -53,13 +53,13 @@ public class SimilarityFunctionExample {
                     + "     ?scientist2 wdt:P106 wd:Q901.\n"
                     + "     ?scientist2 wdt:P1559 ?name2.\n"
                     + "   }\n"
-                    + "   FILTER ( loom:lcs(?name1, ?name2 ) > 0.85)\n"
+                    + "   FILTER ( loom:cosine(?name1, ?name2 ) > 0.5)\n"
                     + "}\n"
                     + "Limit 8";
 
     public static void main(String[] args) {
-        CustomFunctions.loadSimilarityFunctions();
-
+        CustomFunctions.loadTextFunctions();
+        System.out.println(SPARQL2);
         SparqlExecutor.printModel(SPARQL2);
     }
 }

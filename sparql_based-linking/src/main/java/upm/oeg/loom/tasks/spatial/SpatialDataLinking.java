@@ -127,7 +127,7 @@ public class SpatialDataLinking {
 
             ConfusionMatrix cm = new ConfusionMatrix(precision, recall, (System.currentTimeMillis() - start));
 //            LOGGER.info("{}", cm);
-//            cm.save(spatialFile.getConfusionMatrixFile());
+            cm.save(spatialFile.getConfusionMatrixFile());
 
             printResult(spatialFile, cm, goldenModel, resultModel);
         }

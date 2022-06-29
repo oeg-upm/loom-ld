@@ -1,3 +1,3 @@
 {
-	"fp":0,"precision":1.0,"tp":256
+	"f1":1.0,"milliseconds":458,"precision":1.0,"recall":1.0
 }

@@ -1,10 +1,12 @@
-package upm.oeg.loom.tasks;
+package upm.oeg.loom.tasks.spimbench;
 
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.riot.RDFDataMgr;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import upm.oeg.loom.functions.CustomFunctions;
+import upm.oeg.loom.tasks.ConfusionMatrix;
+import upm.oeg.loom.tasks.spatial.SpatialDataLinking;
 import upm.oeg.loom.utils.SparqlExecutor;
 
 import java.io.File;
@@ -17,7 +19,7 @@ import java.io.File;
  */
 public class SPIMBENCHLinking {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(SpatenLinking.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(SpatialDataLinking.class);
     private static final String TBOX_1_FILENAME = "SPIMBENCH/SPIMBENCH_small/Tbox1.nt";
     private static final String TBOX_2_FILENAME = "SPIMBENCH/SPIMBENCH_small/Tbox2.nt";
 
@@ -102,7 +104,7 @@ public class SPIMBENCHLinking {
                     + "}\n";
 
     public static void main(String[] args) throws Exception {
-        CustomFunctions.loadSimilarityFunctions();
+        CustomFunctions.loadTextFunctions();
 
 
         Model tBox1 = SparqlExecutor.getModel(SPARQL1, TBOX_1_FILENAME);
@@ -110,15 +112,16 @@ public class SPIMBENCHLinking {
         Model tBox2 = SparqlExecutor.getModel(SPARQL2, TBOX_2_FILENAME);
         Model tBox = tBox1.add(tBox2);
 
+        long start = System.currentTimeMillis();
         SparqlExecutor.saveModel(RESULT_SPARQL, tBox, RESULT_FILENAME);
 //        Model result = SparqlExecutor.getModel(RESULT_SPARQL, tBox);
         Model result = RDFDataMgr.loadModel(RESULT_FILENAME);
 
         Model golden = SparqlExecutor.getModel(GOLDEN_SPARQL, REFALIGN_FILENAME);
-
-        int tp = Math.toIntExact(result.intersection(golden).size());
-        int fp = Math.toIntExact(result.difference(golden).size());
-        ConfusionMatrix cm = new ConfusionMatrix(tp, fp);
+        long intersectionNumber = result.intersection(golden).size();
+        double precision = intersectionNumber * 1.0 / result.size();
+        double recall = intersectionNumber * 1.0 / golden.size();
+        ConfusionMatrix cm = new ConfusionMatrix(precision, recall, System.currentTimeMillis() - start);
         if (cm.getPrecision() < 1.0) {
             LOGGER.error("Precision is less than 1.0");
         }
