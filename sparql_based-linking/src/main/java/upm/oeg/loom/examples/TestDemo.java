@@ -11,6 +11,7 @@ import org.apache.jena.riot.RDFParserBuilder;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 /**
  * @author wenqi
@@ -32,10 +33,10 @@ public class TestDemo {
             "    ?project vcard:hasName ?projectName .\n" +
             "}";
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         Model model = ModelFactory
                 .createDefaultModel()
-                .read(IOUtils.toInputStream(RDF, "UTF-8"), null, "TURTLE");
+                .read(IOUtils.toInputStream(RDF, StandardCharsets.UTF_8), null, "TURTLE");
         Query query = QueryFactory.create(SPARQL);
 
         try (QueryExecution qexec = QueryExecutionFactory.create(query, model)) {

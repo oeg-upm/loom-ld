@@ -12,31 +12,12 @@ import java.nio.charset.StandardCharsets;
  * @author wenqi jiang
  */
 public class ConfusionMatrix {
-    private int tp;
-    private int fp;
+
     private double precision;
+    private double recall;
+    private double f1;
 
-    ConfusionMatrix(int tp, int fp) {
-        this.tp = tp;
-        this.fp = fp;
-        this.precision = (double) tp / (tp + fp);
-    }
-
-    public int getTp() {
-        return tp;
-    }
-
-    public void setTp(int tp) {
-        this.tp = tp;
-    }
-
-    public int getFp() {
-        return fp;
-    }
-
-    public void setFp(int fp) {
-        this.fp = fp;
-    }
+    private long milliseconds;
 
     public double getPrecision() {
         return precision;
@@ -46,12 +27,43 @@ public class ConfusionMatrix {
         this.precision = precision;
     }
 
+    public double getRecall() {
+        return recall;
+    }
+
+    public void setRecall(double recall) {
+        this.recall = recall;
+    }
+
+    public double getF1() {
+        return f1;
+    }
+
+    public void setF1(double f1) {
+        this.f1 = f1;
+    }
+
+    public long getMilliseconds() {
+        return milliseconds;
+    }
+
+    public void setMilliseconds(int milliseconds) {
+        this.milliseconds = milliseconds;
+    }
+
+    public ConfusionMatrix(double precision, double recall, long milliseconds) {
+        this.precision = precision;
+        this.recall = recall;
+        f1 = 2 * precision * recall / (precision + recall);
+        this.milliseconds = milliseconds;
+    }
+
     @Override
     public String toString() {
         return JSON.toJSONString(this, JSONWriter.Feature.PrettyFormat);
     }
 
-    void save(File file) throws IOException {
+    public void save(File file) throws IOException {
         FileUtils.writeStringToFile(file, this.toString(), StandardCharsets.UTF_8);
     }
 }

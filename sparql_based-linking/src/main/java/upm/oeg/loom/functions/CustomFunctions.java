@@ -20,7 +20,7 @@ public class CustomFunctions {
     private CustomFunctions() {
     }
 
-    public static void loadSimilarityFunctions() {
+    public static void loadTextFunctions() {
         FUNCTION_REGISTRY.put(TEXT_PREFIX + SimilarityAlgorithm.COSINE, CosineSimilarityFunction.class);
         FUNCTION_REGISTRY.put(TEXT_PREFIX + SimilarityAlgorithm.JACCARD, JaccardSimilarityFunction.class);
         FUNCTION_REGISTRY.put(TEXT_PREFIX + SimilarityAlgorithm.JARO_WINKLER, JaroWinklerSimilarityFunction.class);
