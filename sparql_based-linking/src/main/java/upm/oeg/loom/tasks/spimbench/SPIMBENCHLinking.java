@@ -20,8 +20,8 @@ import java.io.File;
 public class SPIMBENCHLinking {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SpatialDataLinking.class);
-    private static final String TBOX_1_FILENAME = "SPIMBENCH/SPIMBENCH_small/Tbox1.nt";
-    private static final String TBOX_2_FILENAME = "SPIMBENCH/SPIMBENCH_small/Tbox2.nt";
+    private static final String TBOX_1_FILENAME = "SPIMBENCH/SPIMBENCH_large/Tbox1.nt";
+    private static final String TBOX_2_FILENAME = "SPIMBENCH/SPIMBENCH_large/Tbox2.nt";
 
     private static final String REFALIGN_FILENAME = "SPIMBENCH/SPIMBENCH_small/refalign.rdf";
 
@@ -36,15 +36,15 @@ public class SPIMBENCHLinking {
                     + "CONSTRUCT {\n"
                     + "  ?thing rdf:type ?work .\n"
                     + "  ?thing cwork:title ?title .\n"
-                    + "  ?thing cwork:shortTitle ?shortTitle .\n"
-                    + "  ?thing cwork:description ?description .\n"
+//                    + "  ?thing cwork:shortTitle ?shortTitle .\n"
+//                    + "  ?thing cwork:description ?description .\n"
                     + "  ?thing seals:isLocatedAt \"tbox1.nt\" \n"
                     + "}\n"
                     + "WHERE {\n"
                     + "  ?thing rdf:type ?work .\n"
                     + "  ?thing cwork:title ?title .\n"
-                    + "  ?thing cwork:shortTitle ?shortTitle .\n"
-                    + "  ?thing cwork:description ?description .\n"
+//                    + "  ?thing cwork:shortTitle ?shortTitle .\n"
+//                    + "  ?thing cwork:description ?description .\n"
 //                    + "  FILTER(?work IN (cwork:NewsItem, cwork:BlogPost, cwork:Programme))\n"
                     + "}\n";
     private static final String SPARQL2 =
@@ -56,15 +56,15 @@ public class SPIMBENCHLinking {
                     + "CONSTRUCT {\n"
                     + "  ?thing rdf:type ?work .\n"
                     + "  ?thing cwork:title ?title .\n"
-                    + "  ?thing cwork:shortTitle ?shortTitle .\n"
-                    + "  ?thing cwork:description ?description .\n"
+//                    + "  ?thing cwork:shortTitle ?shortTitle .\n"
+//                    + "  ?thing cwork:description ?description .\n"
                     + "  ?thing seals:isLocatedAt \"tbox2.nt\" \n"
                     + "}\n"
                     + "WHERE {\n"
                     + "  ?thing rdf:type ?work .\n"
                     + "  ?thing cwork:title ?title .\n"
-                    + "  ?thing cwork:shortTitle ?shortTitle .\n"
-                    + "  ?thing cwork:description ?description .\n"
+//                    + "  ?thing cwork:shortTitle ?shortTitle .\n"
+//                    + "  ?thing cwork:description ?description .\n"
 //                    + "  FILTER(?work IN (cwork:NewsItem, cwork:BlogPost, cwork:Programme))\n"
                     + "}\n";
 
@@ -83,10 +83,10 @@ public class SPIMBENCHLinking {
                     + "WHERE {\n"
                     + "  ?thing1 seals:isLocatedAt \"tbox1.nt\" .\n"
                     + "  ?thing1 cwork:title ?title1 .\n"
-                    + "  ?thing1 seals:isLocatedAt \"tbox2.nt\" .\n"
+                    + "  ?thing2 seals:isLocatedAt \"tbox2.nt\" .\n"
                     + "  ?thing2 cwork:title ?title2 .\n"
-                    + "  BIND(loom:levenshtein(?title1, ?title2 ) AS ?grade)"
-                    + "  FILTER ( ?grade > 0.85 && ?thing1 != ?thing2)\n"
+                    + "  BIND(loom:cosine(?title1, ?title2 ) AS ?grade)"
+                    + "  FILTER ( ?grade > 0.9)\n"
                     + "}\n";
 
     private static final String GOLDEN_SPARQL =
@@ -113,26 +113,27 @@ public class SPIMBENCHLinking {
         Model tBox = tBox1.add(tBox2);
 
         long start = System.currentTimeMillis();
-        SparqlExecutor.saveModel(RESULT_SPARQL, tBox, RESULT_FILENAME);
+//        SparqlExecutor.saveModel(RESULT_SPARQL, tBox, RESULT_FILENAME);
 //        Model result = SparqlExecutor.getModel(RESULT_SPARQL, tBox);
-        Model result = RDFDataMgr.loadModel(RESULT_FILENAME);
+        SparqlExecutor.printModel(RESULT_SPARQL, tBox);
+//        Model result = RDFDataMgr.loadModel(RESULT_FILENAME);
 
-        Model golden = SparqlExecutor.getModel(GOLDEN_SPARQL, REFALIGN_FILENAME);
-        long intersectionNumber = result.intersection(golden).size();
-        double precision = intersectionNumber * 1.0 / result.size();
-        double recall = intersectionNumber * 1.0 / golden.size();
-        ConfusionMatrix cm = new ConfusionMatrix(precision, recall, System.currentTimeMillis() - start);
-        if (cm.getPrecision() < 1.0) {
-            LOGGER.error("Precision is less than 1.0");
-        }
-        cm.save(new File(MATRIX_FILENAME));
-
-        LOGGER.info("result size: {}", result.size());
-        LOGGER.info("golden size: {}", golden.size());
-        golden.difference(result).write(System.out, "NT");
-        LOGGER.info("==========================================");
-        golden.intersection(result).write(System.out, "NT");
-        LOGGER.info("=========================================");
-        result.difference(golden).write(System.out, "NT");
+//        Model golden = SparqlExecutor.getModel(GOLDEN_SPARQL, REFALIGN_FILENAME);
+//        long intersectionNumber = result.intersection(golden).size();
+//        double precision = intersectionNumber * 1.0 / result.size();
+//        double recall = intersectionNumber * 1.0 / golden.size();
+//        ConfusionMatrix cm = new ConfusionMatrix(precision, recall, System.currentTimeMillis() - start);
+//        if (cm.getPrecision() < 1.0) {
+//            LOGGER.error("Precision is less than 1.0");
+//        }
+//        cm.save(new File(MATRIX_FILENAME));
+//
+//        LOGGER.info("result size: {}", result.size());
+//        LOGGER.info("golden size: {}", golden.size());
+//        golden.difference(result).write(System.out, "NT");
+//        LOGGER.info("==========================================");
+//        golden.intersection(result).write(System.out, "NT");
+//        LOGGER.info("=========================================");
+//        result.difference(golden).write(System.out, "NT");
     }
 }
