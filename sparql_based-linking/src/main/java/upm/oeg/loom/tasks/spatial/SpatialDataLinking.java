@@ -92,11 +92,11 @@ public class SpatialDataLinking {
                     + "PREFIX geometry:    <https://oeg.upm.es/loom-ld/functions/linking/geometry#>\n"
                     + "PREFIX strdf:     <http://strdf.di.uoa.gr/ontology#>\n"
                     + "CONSTRUCT {\n"
-                    + "  ?target strdf:hasGeometry ?sourceGeometry .\n"
+                    + "  ?target strdf:hasGeometry ?targetGeometry .\n"
                     + "  ?target geometry:isLocatedAt \"" + spatialFile.getTargetFile().getName() + "\"\n"
                     + "}\n"
                     + "WHERE {\n"
-                    + "  ?target strdf:hasGeometry ?sourceGeometry .\n"
+                    + "  ?target strdf:hasGeometry ?targetGeometry .\n"
                     + "}\n";
             Model targetModel = SparqlExecutor.getModel(targetSparql, spatialFile.getTargetFile().getPath());
 
@@ -117,6 +117,7 @@ public class SpatialDataLinking {
                     + "}\n";
 
             SparqlExecutor.saveModel(resultSparql, sourceModel.union(targetModel), spatialFile.getResultFile().getPath());
+
 
             Model resultModel = RDFDataMgr.loadModel(spatialFile.getResultFile().getPath());
             Model goldenModel = RDFDataMgr.loadModel(spatialFile.getGoldenFile().getPath());

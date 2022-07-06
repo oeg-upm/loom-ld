@@ -64,7 +64,7 @@ public class SparqlExecutor {
      * @return the model / construct
      */
     public static Model getModel(String sparql, Model source) {
-//        LOGGER.info("run sparql query:\n{} ", sparql);
+        LOGGER.info("run sparql query:\n{} ", sparql);
         query = QueryFactory.create(sparql);
         qexec = QueryExecutionFactory.create(query, source);
         return qexec.execConstruct();
@@ -78,7 +78,7 @@ public class SparqlExecutor {
      * @return the model / construct
      */
     public static Model getModel(String sparql, String filename) {
-//        LOGGER.info("run sparql query from the file {}:", filename);
+        LOGGER.info("run sparql query from the file {}:", filename);
         Model source = RDFDataMgr.loadModel(filename);
         return getModel(sparql, source);
     }
@@ -112,6 +112,18 @@ public class SparqlExecutor {
 //                "Save sparql query:\n{} \nresult into {}, format: {}", sparql, target, lang.getName());
         OutputStream out = FileUtils.openOutputStream(new File(target));
         RDFDataMgr.write(out, model, lang);
+    }
+
+    public static void saveModel(Model source, String target) throws IOException {
+        if (source.isEmpty()) {
+            LOGGER.warn("{}: The model is empty", target);
+            return;
+        }
+        Lang lang = RDFLanguages.filenameToLang(target);
+//        LOGGER.info(
+//                "Save sparql query:\n{} \nresult into {}, format: {}", sparql, target, lang.getName());
+        OutputStream out = FileUtils.openOutputStream(new File(target));
+        RDFDataMgr.write(out, source, lang);
     }
 
     public static void printModel(String sparql, Model model) {
